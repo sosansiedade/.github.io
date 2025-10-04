@@ -8,46 +8,15 @@
   <meta property="og:title" content="SOS Ansiedade">
   <meta property="og:description" content="Técnicas rápidas, áudio-guias e ferramentas para acalmar a ansiedade.">
   <meta property="og:type" content="website">
-
-  <!-- Caminhos RELATIVOS (funcionam em GitHub Pages) -->
-  <link rel="stylesheet" href="./styles.css?v=7">
+  <link rel="stylesheet" href="./styles.css?v=8">
   <link rel="icon" href="./favicon.png">
-
-  <!-- Overrides de estilo para o ícone e layout do herói -->
   <style>
-    .hero {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      padding: 44px 0;
-      flex-wrap: wrap; /* permite partir linha se faltar espaço */
-    }
-    .app-icon {
-      width: 220px;
-      height: 220px;
-      border-radius: 28px;           /* cantos arredondados tipo app */
-      box-shadow: 0 10px 28px rgba(0,0,0,.18);
-      object-fit: cover;             /* cobre a moldura sem distorcer */
-      background: #fff;              /* se a imagem tiver transparência */
-      display: block;
-      flex: 0 0 auto;
-    }
-    .hero-text {
-      flex: 1 1 320px; 
-      min-width: 0;
-    }
-    .hero-text h1 {
-      margin: 0 0 8px;
-      line-height: 1.1;
-      word-break: break-word;
-      overflow-wrap: anywhere;
-      white-space: normal;
-    }
-    .hero-text p { margin: 0 0 12px; }
-    @media (max-width: 800px) {
-      .hero { flex-direction: column; text-align: center; gap: 20px; }
-      .app-icon { width: 180px; height: 180px; border-radius: 24px; }
-    }
+    .hero{display:flex;align-items:center;gap:28px;padding:44px 0;flex-wrap:wrap}
+    .app-icon{width:220px;height:220px;border-radius:28px;box-shadow:0 10px 28px rgba(0,0,0,.18);object-fit:cover;background:#fff;display:block;flex:0 0 auto}
+    .hero-text{flex:1 1 320px;min-width:0}
+    .hero-text h1{margin:0 0 8px;line-height:1.1;word-break:break-word;overflow-wrap:anywhere;white-space:normal}
+    .hero-text p{margin:0 0 12px}
+    @media (max-width:800px){.hero{flex-direction:column;text-align:center;gap:20px}.app-icon{width:180px;height:180px;border-radius:24px}}
   </style>
 </head>
 <body>
@@ -59,9 +28,7 @@
 
   <div class="container">
     <section class="hero">
-      <!-- O src será definido pelo script abaixo (tenta vários caminhos) -->
       <img id="appLogo" class="app-icon" alt="Logo SOS Ansiedade">
-
       <div class="hero-text">
         <h1>SOS Ansiedade</h1>
         <p>Ferramentas simples e eficazes para te ajudar a respirar, recentrar e reduzir a ansiedade — em qualquer lugar.</p>
@@ -69,9 +36,7 @@
           <a class="btn primary" href="#">Instalar no Android</a>
           <a class="btn" href="#">Instalar no iOS</a>
         </div>
-        <p style="margin:8px 0;color:#6b6b6b;font-size:14px">
-          Precisas de ajuda? <a href="mailto:suporte@sosansiedade.com">suporte@sosansiedade.com</a>
-        </p>
+        <p style="margin:8px 0;color:#6b6b6b;font-size:14px">Precisas de ajuda? <a href="mailto:suporte@sosansiedade.com">suporte@sosansiedade.com</a></p>
       </div>
     </section>
 
@@ -85,47 +50,34 @@
       </ul>
     </main>
 
-    <div class="footer">
-      © <span id="y"></span> SOS Ansiedade ·
-      <a href="./privacy.html">Privacidade</a> ·
-      <a href="./terms.html">Termos</a>
-    </div>
+    <div class="footer">© <span id="y"></span> SOS Ansiedade · <a href="./privacy.html">Privacidade</a> · <a href="./terms.html">Termos</a></div>
   </div>
 
   <script>
-    // Data no rodapé
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Carregador de logo "à prova de falhas"
     (function () {
       const img = document.getElementById('appLogo');
       const candidates = [
-        './assets7/logo.png?v=1',
         './assets/logo.png?v=1',
+        './assets7/logo.png?v=1',
         './logo.png?v=1'
       ];
-
       function tryNext(i){
-        if(i >= candidates.length){
-          // Fallback visível – para não ficares sem logo
-          img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(
-            '<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220">' +
-            '<rect width="220" height="220" rx="28" fill="#B7A8EA"/>' +
-            '<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" ' +
-            'font-family="Arial, sans-serif" font-size="42" fill="#fff">SOS</text></svg>'
-          );
+        if(i>=candidates.length){
+          img.src='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220"><rect width="220" height="220" rx="28" fill="#B7A8EA"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" fill="#fff">SOS</text></svg>');
           console.warn('Logo não encontrado em nenhum caminho testado.');
           return;
         }
-        const url = candidates[i];
-        const t = new Image();
-        t.onload = () => { img.src = url; console.log('Logo carregado de:', url); };
-        t.onerror = () => { console.log('Falhou:', url); tryNext(i+1); };
-        t.src = url;
+        const url=candidates[i], t=new Image();
+        t.onload=()=>{img.src=url; console.log('Logo:',url);};
+        t.onerror=()=>{console.log('Falhou:',url); tryNext(i+1);};
+        t.src=url;
       }
       tryNext(0);
     })();
   </script>
 </body>
 </html>
+
 
