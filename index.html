@@ -8,15 +8,23 @@
   <meta property="og:title" content="SOS Ansiedade">
   <meta property="og:description" content="Técnicas rápidas, áudio-guias e ferramentas para acalmar a ansiedade.">
   <meta property="og:type" content="website">
-  <link rel="stylesheet" href="./styles.css?v=8">
+  <link rel="stylesheet" href="./styles.css?v=9">
   <link rel="icon" href="./favicon.png">
   <style>
     .hero{display:flex;align-items:center;gap:28px;padding:44px 0;flex-wrap:wrap}
-    .app-icon{width:220px;height:220px;border-radius:28px;box-shadow:0 10px 28px rgba(0,0,0,.18);object-fit:cover;background:#fff;display:block;flex:0 0 auto}
+    .app-icon{
+      width:208px;height:208px;           /* ligeiramente menor */
+      border-radius:26px;                  /* ajusta o arredondado */
+      box-shadow:0 10px 28px rgba(0,0,0,.18);
+      object-fit:cover;background:#fff;display:block;flex:0 0 auto
+    }
     .hero-text{flex:1 1 320px;min-width:0}
     .hero-text h1{margin:0 0 8px;line-height:1.1;word-break:break-word;overflow-wrap:anywhere;white-space:normal}
     .hero-text p{margin:0 0 12px}
-    @media (max-width:800px){.hero{flex-direction:column;text-align:center;gap:20px}.app-icon{width:180px;height:180px;border-radius:24px}}
+    @media (max-width:800px){
+      .hero{flex-direction:column;text-align:center;gap:20px}
+      .app-icon{width:172px;height:172px;border-radius:22px}
+    }
   </style>
 </head>
 <body>
@@ -56,6 +64,7 @@
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
 
+    // Carrega o logo a partir do primeiro caminho existente
     (function () {
       const img = document.getElementById('appLogo');
       const candidates = [
@@ -65,13 +74,12 @@
       ];
       function tryNext(i){
         if(i>=candidates.length){
-          img.src='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220"><rect width="220" height="220" rx="28" fill="#B7A8EA"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" fill="#fff">SOS</text></svg>');
-          console.warn('Logo não encontrado em nenhum caminho testado.');
+          img.src='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="208" height="208"><rect width="208" height="208" rx="26" fill="#B7A8EA"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-size="40" fill="#fff">SOS</text></svg>');
           return;
         }
         const url=candidates[i], t=new Image();
-        t.onload=()=>{img.src=url; console.log('Logo:',url);};
-        t.onerror=()=>{console.log('Falhou:',url); tryNext(i+1);};
+        t.onload=()=>{img.src=url;};
+        t.onerror=()=>{tryNext(i+1);};
         t.src=url;
       }
       tryNext(0);
@@ -79,5 +87,6 @@
   </script>
 </body>
 </html>
+
 
 
