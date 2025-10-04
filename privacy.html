@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <title>Política de Privacidade – SOS Ansiedade (versão nova)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- cache-busting para evitar cache antiga -->
+  <link rel="stylesheet" href="./styles.css?v=pp2">
+</head>
+<body>
+  <nav class="nav">
+    <a href="./">Início</a>
+    <a href="./privacy.html" class="active">Política de Privacidade</a>
+    <a href="./terms.html">Termos & Condições</a>
+  </nav>
+
+  <div class="container">
+    <h1>Política de Privacidade</h1>
+    <p><em>Última atualização: <span id="d"></span></em></p>
+
+    <p>Respeitamos a tua privacidade. Esta Política explica que dados recolhemos, porquê, como os tratamos e os teus direitos ao abrigo do RGPD.</p>
+
+    <h2>Quem somos</h2>
+    <p><strong>SOS Ansiedade</strong> é uma aplicação de bem-estar que fornece exercícios de respiração, SOS de pânico, meditações guiadas e um assistente com IA para apoio emocional.</p>
+    <p><strong>Responsável pelo tratamento:</strong> SOS Ansiedade — <a href="mailto:suporte@sosansiedade.com">suporte@sosansiedade.com</a>.</p>
+
+    <h2>Que dados recolhemos</h2>
+    <ul>
+      <li><strong>Dados de utilização</strong> (anónimos/aglomerados): ecrãs usados, idioma, versão da app e do SO, eventos básicos.</li>
+      <li><strong>Conteúdos facultados por ti</strong>: textos/notas no chat de IA, preferências, favoritos.</li>
+      <li><strong>Áudio</strong> (opcional): quando usas Falar (STT) ou Ouvir (TTS); processado apenas para gerar texto/voz.</li>
+      <li><strong>Notificações</strong> (opcional): token para enviar lembretes; podes desativar no dispositivo.</li>
+      <li><strong>Suporte</strong>: mensagens enviadas por email.</li>
+    </ul>
+
+    <h2>Como usamos os dados (finalidades & bases legais)</h2>
+    <ul>
+      <li><strong>Prestar o serviço</strong> (execução do contrato): conteúdos, exercícios, respostas com IA.</li>
+      <li><strong>Melhoria e segurança</strong> (interesse legítimo): métricas anónimas, estabilidade, prevenção de abuso.</li>
+      <li><strong>Comunicações</strong> (consentimento/interesse legítimo): notificações e respostas a suporte.</li>
+    </ul>
+
+    <h2>Tratamento por IA</h2>
+    <p>O texto que introduces no assistente pode ser processado por fornecedores de IA (ex.: OpenAI) como subencarregados, apenas para gerar respostas. Não usamos estes conteúdos para treinar modelos sem o teu consentimento.</p>
+
+    <h2>Partilha com terceiros (subprocessadores)</h2>
+    <ul>
+      <li><strong>IA / TTS / STT</strong> para gerar respostas ou voz.</li>
+      <li><strong>Analytics & crash reporting</strong> para métricas anónimas e estabilidade.</li>
+      <li><strong>Notificações</strong> para envio de alertas.</li>
+    </ul>
+    <p>Tratamento limitado às nossas instruções, com medidas de segurança adequadas.</p>
+
+    <h2>Transferências internacionais</h2>
+    <p>Se houver tratamento fora do EEE, aplicamos salvaguardas (Cláusulas Contratuais-Tipo).</p>
+
+    <h2>Retenção</h2>
+    <ul>
+      <li><strong>Dados locais</strong> na app: ficam no teu dispositivo até removeres.</li>
+      <li><strong>Registos técnicos/erros</strong>: pelo tempo necessário a diagnóstico/securança.</li>
+      <li><strong>Suporte</strong>: enquanto necessário para resolver e cumprir obrigações legais.</li>
+    </ul>
+
+    <h2>Os teus direitos (RGPD)</h2>
+    <p>Aceder, retificar, apagar, limitar, opor-te e portabilidade. Podes retirar consentimento quando aplicável.</p>
+    <p>Contacta: <a href="mailto:suporte@sosansiedade.com">suporte@sosansiedade.com</a>. Respondemos dentro dos prazos legais.</p>
+
+    <h2>Segurança</h2>
+    <p>Encriptação em trânsito, minimização de dados e controlos de acesso. Nenhum método é 100% infalível, mas esforçamo-nos para proteger os teus dados.</p>
+
+    <h2>Crianças</h2>
+    <p>Destina-se a maiores de 16 anos. Se és menor, usa com consentimento do responsável. Se recolhemos dados indevidamente, contacta-nos para remover.</p>
+
+    <h2>Cookies e tecnologias semelhantes</h2>
+    <p>No site poderemos usar cookies/armazenamento local para funcionalidades e métricas; na app, identificadores do dispositivo com finalidades equivalentes. Podes gerir no navegador/dispositivo.</p>
+
+    <h2>Alterações</h2>
+    <p>Podemos atualizar esta Política. Publicaremos a nova versão aqui e atualizaremos a data.</p>
+
+    <h2>Contacto</h2>
+    <p><a href="mailto:suporte@sosansiedade.com">suporte@sosansiedade.com</a></p>
+
+    <div class="footer">© <span id="y"></span> SOS Ansiedade</div>
+  </div>
+
+  <script>
+    const now = new Date();
+    document.getElementById('y').textContent = now.getFullYear();
+    document.getElementById('d').textContent = now.toISOString().slice(0,10);
+  </script>
+</body>
+</html>
