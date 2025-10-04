@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<title>Diagnóstico do Logo</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  body{font-family:system-ui,Arial,sans-serif;max-width:720px;margin:24px auto;padding:0 16px}
+  .row{display:flex;gap:16px;align-items:center;margin:10px 0}
+  .box{width:120px;height:120px;border-radius:16px;background:#f3f3f3;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px #ddd inset}
+  .ok{box-shadow:0 0 0 2px #18a558 inset}
+  .fail{box-shadow:0 0 0 2px #d33 inset}
+  code{background:#f6f8fa;padding:2px 6px;border-radius:6px}
+  small{color:#666}
+</style>
+</head>
+<body>
+<h1>Diagnóstico do Logo</h1>
+<p>Esta página tenta carregar o logo a partir de 3 caminhos comuns. O primeiro que funcionar indica onde o ficheiro realmente está.</p>
+
+<div id="tests"></div>
+
+<script>
+const paths = ['./assets7/logo.png', './assets/logo.png', './logo.png'];
+const tests = document.getElementById('tests');
+
+paths.forEach(p=>{
+  const row = document.createElement('div'); row.className='row';
+  const box = document.createElement('div'); box.className='box';
+  const img = new Image(); img.style.maxWidth='100%'; img.style.maxHeight='100%'; img.alt='preview';
+
+  const label = document.createElement('div');
+  label.innerHTML = `<div><code>${p}</code></div><small id="s-${p}">a testar…</small>`;
+
+  const s = label.querySelector('small');
+  const t = new Image();
+  t.onload = ()=>{ s.textContent='OK'; box.classList.add('ok'); img.src=p+'?v='+Date.now(); };
+  t.onerror = ()=>{ s.textContent='não encontrado (404)'; box.classList.add('fail'); };
+  t.src = p+'?v='+Date.now();
+
+  box.appendChild(img);
+  row.appendChild(box);
+  row.appendChild(label);
+  tests.appendChild(row);
+});
+</script>
+
+<p><strong>O que fazer a seguir:</strong></p>
+<ol>
+  <li>Se <code>./logo.png</code> ficar verde, no teu <code>index.html</code> usa <code>&lt;img src="./logo.png"&gt;</code>.</li>
+  <li>Se <code>./assets/logo.png</code> ficar verde, usa <code>&lt;img src="./assets/logo.png"&gt;</code>.</li>
+  <li>Se <code>./assets7/logo.png</code> ficar verde, usa <code>&lt;img src="./assets7/logo.png"&gt;</code>.</li>
+</ol>
+</body>
+</html>
