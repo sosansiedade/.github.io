@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <title>SOS Ansiedade – Apoio na palma da tua mão</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SOS Ansiedade: técnicas rápidas, áudio-guias e ferramentas para acalmar a ansiedade.">
+  <meta property="og:title" content="SOS Ansiedade">
+  <meta property="og:description" content="Técnicas rápidas, áudio-guias e ferramentas para acalmar a ansiedade.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sosansiedade.com/">
+
+  <link rel="stylesheet" href="./styles.css?v=6">
+  <link rel="icon" href="./favicon.png">
+
+  <!-- Overrides para ícone grande + texto sem cortar -->
+  <style>
+    .hero {
+      display: flex; align-items: center; gap: 28px; padding: 44px 0;
+      flex-wrap: wrap; /* permite partir linha se faltar espaço */
+    }
+    .app-icon {
+      width: 220px; height: 220px; border-radius: 28px;
+      box-shadow: 0 10px 28px rgba(0,0,0,.18);
+      display: block; object-fit: cover; background: #fff;
+      flex: 0 0 auto; /* não encolhe */
+    }
+    .hero-text {
+      flex: 1 1 320px; min-width: 0; /* deixa o texto ocupar o resto sem forçar corte */
+    }
+    .hero-text h1 {
+      margin: 0 0 8px; line-height: 1.1;
+      word-break: break-word; overflow-wrap: anywhere; white-space: normal;
+    }
+    .hero-text p { margin: 0 0 12px; }
+    @media (max-width: 800px) {
+      .hero { flex-direction: column; text-align: center; gap: 20px; }
+      .app-icon { width: 180px; height: 180px; border-radius: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="./" class="active">Início</a>
+    <a href="./privacy.html">Política de Privacidade</a>
+    <a href="./terms.html">Termos & Condições</a>
+  </nav>
+
+  <div class="container">
+    <section class="hero">
+      <!-- logo.png dentro de assets7 -->
+      <img class="app-icon" src="./assets7/logo.png?v=4" alt="Logo SOS Ansiedade">
+      <div class="hero-text">
+        <h1>SOS Ansiedade</h1>
+        <p>Ferramentas simples e eficazes para te ajudar a respirar, recentrar e reduzir a ansiedade — em qualquer lugar.</p>
+        <div class="cta">
+          <a class="btn primary" href="#">Instalar no Android</a>
+          <a class="btn" href="#">Instalar no iOS</a>
+        </div>
+        <p style="margin:8px 0;color:#6b6b6b;font-size:14px">
+          Precisas de ajuda? <a href="mailto:suporte@sosansiedade.com">suporte@sosansiedade.com</a>
+        </p>
+      </div>
+    </section>
+
+    <main>
+      <h2>O que encontras na app</h2>
+      <ul>
+        <li>Exercícios guiados de respiração e grounding</li>
+        <li>Áudio-guias e dicas práticas</li>
+        <li>Modo offline</li>
+        <li>Opção Premium para conteúdo extra</li>
+      </ul>
+    </main>
+
+    <div class="footer">
+      © <span id="y"></span> SOS Ansiedade ·
+      <a href="./privacy.html">Privacidade</a> ·
+      <a href="./terms.html">Termos</a>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
