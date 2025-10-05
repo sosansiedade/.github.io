@@ -1,94 +1,85 @@
 <!doctype html>
 <html lang="pt">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>SOS Ansiedade – Apoio na palma da tua mão</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="SOS Ansiedade: técnicas rápidas, áudio-guias e ferramentas para acalmar a ansiedade.">
-  <meta property="og:title" content="SOS Ansiedade">
-  <meta property="og:description" content="Técnicas rápidas, áudio-guias e ferramentas para acalmar a ansiedade.">
-  <meta property="og:type" content="website">
-  <link rel="stylesheet" href="./styles.css?v=12">
-  <link rel="icon" href="./favicon.png">
-  <style>
-    .hero{display:flex;align-items:center;gap:28px;padding:44px 0;flex-wrap:wrap}
-    .app-icon{
-      width:175px;height:175px;       /* menor */
-      border-radius:20px;              /* arredondado proporcional */
-      box-shadow:0 10px 28px rgba(0,0,0,.18);
-      object-fit:cover;background:#fff;display:block;flex:0 0 auto
-    }
-    .hero-text{flex:1 1 320px;min-width:0}
-    .hero-text h1{margin:0 0 8px;line-height:1.1;word-break:break-word;overflow-wrap:anywhere;white-space:normal}
-    .hero-text p{margin:0 0 12px}
-    @media (max-width:800px){
-      .hero{flex-direction:column;text-align:center;gap:20px}
-      .app-icon{width:148px;height:148px;border-radius:18px}
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Ferramentas rápidas de respiração, grounding e áudio-guias para acalmar a ansiedade. Funciona offline. Sem anúncios." />
+
+  <!-- Canonical & SEO -->
+  <link rel="canonical" href="https://www.sosansiedade.com/" />
+  <meta name="theme-color" content="#E9DBF5" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="SOS Ansiedade" />
+  <meta property="og:description" content="Ferramentas rápidas para respirar, recentrar e reduzir a ansiedade — em qualquer lugar." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.sosansiedade.com/" />
+  <meta property="og:image" content="https://www.sosansiedade.com/assets/feature.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SOS Ansiedade" />
+  <meta name="twitter:description" content="Técnicas de respiração e grounding, áudio-guias e modo offline." />
+  <meta name="twitter:image" content="https://www.sosansiedade.com/assets/feature.png" />
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" href="./favicon.png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="./assets/icon-180.png" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <nav class="nav">
-    <a href="./" class="active">Início</a>
-    <a href="./privacy.html">Política de Privacidade</a>
-    <a href="./terms.html">Termos & Condições</a>
-  </nav>
+  <header class="site-header" role="banner">
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="./" class="active" aria-current="page">Início</a>
+      <a href="./privacy.html">Privacidade</a>
+      <a href="./terms.html">Termos</a>
+    </nav>
+  </header>
 
   <div class="container">
-    <section class="hero">
-      <img id="appLogo" class="app-icon" alt="Logo SOS Ansiedade">
-      <div class="hero-text">
-        <h1>SOS Ansiedade</h1>
-        <p>Ferramentas simples e eficazes para te ajudar a respirar, recentrar e reduzir a ansiedade — em qualquer lugar.</p>
-        <div class="cta">
-          <a class="btn primary" href="#">Instalar no Android</a>
-          <a class="btn" href="#">Instalar no iOS</a>
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="app-badge" src="./assets/logo.png" alt="Ícone da app SOS Ansiedade" width="180" height="180" loading="eager" decoding="async" />
+      <div>
+        <h1 id="hero-title">SOS Ansiedade</h1>
+        <p class="lead">
+          Ferramentas simples e eficazes para te ajudar a respirar, recentrar e reduzir a ansiedade — em qualquer lugar.
+        </p>
+
+        <div class="cta" role="group" aria-label="Instalar a app">
+          <!-- Substituir pelos links reais das lojas quando tiveres -->
+          <a class="btn primary" href="#" aria-disabled="true">Instalar no Android</a>
+          <a class="btn" href="#" aria-disabled="true">Instalar no iOS</a>
         </div>
-        <p style="margin:8px 0;color:#6b6b6b;font-size:14px">Precisas de ajuda? <a href="mailto:suporte@sosansiedade.com">suporte@sosansiedade.com</a></p>
+
+        <p class="help">
+          Precisas de ajuda? <a href="mailto:suporte@sosansiedade.com">suporte@sosansiedade.com</a>
+        </p>
       </div>
     </section>
 
-    <main>
+    <main id="conteudo">
       <h2>O que encontras na app</h2>
       <ul>
         <li>Exercícios guiados de respiração e grounding</li>
         <li>Áudio-guias e dicas práticas</li>
-        <li>Modo offline</li>
+        <li>Funciona offline</li>
         <li>Opção Premium para conteúdo extra</li>
       </ul>
     </main>
 
-    <div class="footer">© <span id="y"></span> SOS Ansiedade · <a href="./privacy.html">Privacidade</a> · <a href="./terms.html">Termos</a></div>
+    <footer class="footer" role="contentinfo">
+      © <span id="y"></span> SOS Ansiedade ·
+      <a href="./privacy.html">Privacidade</a> ·
+      <a href="./terms.html">Termos</a>
+    </footer>
   </div>
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Carrega o logo a partir do primeiro caminho existente
-    (function () {
-      const img = document.getElementById('appLogo');
-      const candidates = [
-        './assets/logo.png?v=1',
-        './assets7/logo.png?v=1',
-        './logo.png?v=1'
-      ];
-      function tryNext(i){
-        if(i>=candidates.length){
-          img.src='data:image/svg+xml;utf8,'+encodeURIComponent(
-            '<svg xmlns="http://www.w3.org/2000/svg" width="184" height="184" viewBox="0 0 184 184">'+
-            '<rect width="184" height="184" rx="20" fill="#B7A8EA"/>'+
-            '<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" fill="#fff">SOS</text></svg>'
-          );
-          return;
-        }
-        const url=candidates[i], t=new Image();
-        t.onload=()=>{img.src=url;};
-        t.onerror=()=>{tryNext(i+1);};
-        t.src=url;
-      }
-      tryNext(0);
-    })();
   </script>
 </body>
 </html>
-
