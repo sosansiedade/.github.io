@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Ferramentas rápidas de respiração, grounding e áudio-guias para acalmar a ansiedade. Funciona offline. Sem anúncios." />
 
-  <!-- Canonical & SEO -->
+  <!-- Canonical & cores -->
   <link rel="canonical" href="https://www.sosansiedade.com/" />
   <meta name="theme-color" content="#E9DBF5" />
 
-  <!-- Open Graph / Facebook -->
+  <!-- Open Graph -->
   <meta property="og:title" content="SOS Ansiedade" />
-  <meta property="og:description" content="Ferramentas rápidas para respirar, recentrar e reduzir a ansiedade — em qualquer lugar." />
+  <meta property="og:description" content="Ferramentas simples para respirar, recentrar e reduzir a ansiedade — em qualquer lugar." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.sosansiedade.com/" />
   <meta property="og:image" content="https://www.sosansiedade.com/assets/feature.png" />
@@ -20,7 +20,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="SOS Ansiedade" />
-  <meta name="twitter:description" content="Técnicas de respiração e grounding, áudio-guias e modo offline." />
+  <meta name="twitter:description" content="Respiração, grounding, áudio-guias e modo offline." />
   <meta name="twitter:image" content="https://www.sosansiedade.com/assets/feature.png" />
 
   <!-- Favicon & PWA -->
@@ -42,15 +42,28 @@
 
   <div class="container">
     <section class="hero" aria-labelledby="hero-title">
-      <img class="app-badge" src="./assets/logo.png" alt="Ícone da app SOS Ansiedade" width="180" height="180" loading="eager" decoding="async" />
+      <!-- LOGO DA APP visível (coloca o ficheiro em ./assets/logo.png) -->
+      <img
+        src="./assets/logo.png"
+        alt="Ícone da app SOS Ansiedade"
+        width="180" height="180"
+        loading="eager" decoding="async"
+        style="width:180px;height:180px;border-radius:28%;object-fit:cover;border:1px solid rgba(0,0,0,.06)"
+      />
+
       <div>
         <h1 id="hero-title">SOS Ansiedade</h1>
         <p class="lead">
           Ferramentas simples e eficazes para te ajudar a respirar, recentrar e reduzir a ansiedade — em qualquer lugar.
         </p>
 
+        <!-- Aviso clínico/ética -->
+        <p role="note" style="margin:8px 0; color:#6b6b6b; font-size:14px">
+          <strong>Aviso:</strong> esta app não substitui apoio profissional. Em emergência, liga <strong>112</strong>.
+        </p>
+
         <div class="cta" role="group" aria-label="Instalar a app">
-          <!-- Substituir pelos links reais das lojas quando tiveres -->
+          <!-- Substitui pelos links reais das lojas quando tiveres -->
           <a class="btn primary" href="#" aria-disabled="true">Instalar no Android</a>
           <a class="btn" href="#" aria-disabled="true">Instalar no iOS</a>
         </div>
