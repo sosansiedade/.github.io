@@ -42,9 +42,9 @@
 
   <div class="container">
     <section class="hero" aria-labelledby="hero-title">
-      <!-- LOGO DA APP visível (o teu ficheiro está em /assets7/logo.png) -->
+      <!-- LOGO DA APP (carregado com fallback automático) -->
       <img
-        src="/assets7/logo.png"
+        id="appLogo"
         alt="Ícone da app SOS Ansiedade"
         width="180" height="180"
         loading="eager" decoding="async"
@@ -92,7 +92,34 @@
   </div>
 
   <script>
+    // ano no rodapé
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Fallback automático do logo: tenta vários caminhos até encontrar um válido
+    (async function(){
+      const candidates = [
+        '/assets7/logo.png',   // onde disseste que está
+        '/assets/logo.png',    // caminho standard
+        './assets7/logo.png',  // relativo (caso especial)
+        './assets/logo.png',
+        '/logo.png'            // raiz, se tiveres aí
+      ];
+      for (const url of candidates) {
+        try {
+          const r = await fetch(url, { method:'HEAD', cache:'no-store' });
+          const ok = r.ok && (r.headers.get('content-type') || '').includes('image');
+          if (ok) {
+            document.getElementById('appLogo').src = url + '?v=' + Date.now();
+            return;
+          }
+        } catch(e) { /* ignora e tenta o próximo */ }
+      }
+      // opcional: logo de reserva (emoji) se nada existir
+      const el = document.getElementById('appLogo');
+      el.alt = 'Logo não encontrado';
+      el.style.background = '#fff';
+      el.style.display = 'flex';
+    })();
   </script>
 </body>
 </html>
