@@ -42,7 +42,7 @@
 
   <div class="container">
     <section class="hero" aria-labelledby="hero-title">
-      <!-- LOGO DA APP (carregado com fallback automático) -->
+      <!-- LOGO DA APP (com fallback automático) -->
       <img
         id="appLogo"
         alt="Ícone da app SOS Ansiedade"
@@ -95,32 +95,41 @@
     // ano no rodapé
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Fallback automático do logo: tenta vários caminhos até encontrar um válido
-    (async function(){
+    // Carrega o logo tentando vários caminhos (sem CORS) e com fallback final para o ficheiro no outro repo
+    (function() {
       const candidates = [
-        '/assets7/logo.png',   // onde disseste que está
-        '/assets/logo.png',    // caminho standard
-        './assets7/logo.png',  // relativo (caso especial)
+        '/assets7/logo.png',   // onde disseste que está no site
+        '/assets/logo.png',    // caminho standard (recomendado)
+        './assets7/logo.png',  // relativos (casos de subdiretórios)
         './assets/logo.png',
-        '/logo.png'            // raiz, se tiveres aí
+        '/logo.png',
+        // Fallback: imagem no outro repositório (funciona já)
+        'https://raw.githubusercontent.com/sosansiedade/.github.io/main/assets7/logo.png'
       ];
-      for (const url of candidates) {
-        try {
-          const r = await fetch(url, { method:'HEAD', cache:'no-store' });
-          const ok = r.ok && (r.headers.get('content-type') || '').includes('image');
-          if (ok) {
-            document.getElementById('appLogo').src = url + '?v=' + Date.now();
-            return;
-          }
-        } catch(e) { /* ignora e tenta o próximo */ }
-      }
-      // opcional: logo de reserva (emoji) se nada existir
-      const el = document.getElementById('appLogo');
-      el.alt = 'Logo não encontrado';
-      el.style.background = '#fff';
-      el.style.display = 'flex';
+
+      const imgEl = document.getElementById('appLogo');
+
+      (function tryNext(i) {
+        if (i >= candidates.length) {
+          imgEl.alt = 'Logo não encontrado';
+          imgEl.style.background = '#fff';
+          imgEl.style.display = 'flex';
+          console.error('Nenhum caminho de logo funcionou:', candidates);
+          return;
+        }
+        const test = new Image();
+        test.onload = function() {
+          imgEl.src = candidates[i] + (candidates[i].startsWith('http') ? '' : ('?v=' + Date.now()));
+          console.info('Logo carregado de:', candidates[i]);
+        };
+        test.onerror = function() {
+          tryNext(i + 1);
+        };
+        test.src = candidates[i] + (candidates[i].startsWith('http') ? '' : ('?v=' + Date.now()));
+      })(0);
     })();
   </script>
 </body>
 </html>
+
 
