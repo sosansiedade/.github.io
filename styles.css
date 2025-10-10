@@ -73,7 +73,7 @@ kbd{
 .hero{
   display: grid !important;
   grid-template-columns: 100px 1fr !important; /* coluna do logo + texto */
-  column-gap: 52px !important;                 /* espaço entre logo e texto */
+  column-gap: 82px !important;                 /* espaço entre logo e texto */
   align-items: start !important;
   margin: 32px 0 !important;
 }
