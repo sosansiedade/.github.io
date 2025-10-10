@@ -22,42 +22,36 @@
   <link rel="stylesheet" href="./styles.css?v=6" />
 
   <style>
-    /* --- Hard reset útil para evitar que algo externo quebre o layout --- */
+    /* Bloqueia interferências externas */
     .hero, .hero * { box-sizing: border-box; }
 
     :root{
       --brand-bg:#E9DBF5;
-      --logo-scale:1.24; /* afina 1.20–1.30 para cortar qq halo */
+      --logo-scale:1.24; /* afina 1.20–1.30 se aparecer um halo */
     }
 
-    /* ====== HERO: lado-a-lado SEMPRE em desktop/tablet ====== */
+    /* ===== HERO EM GRID: logo (coluna 1) + texto (coluna 2) ===== */
     .hero{
-      display:flex !important;
+      display:grid !important;
+      grid-template-columns: 190px minmax(0, 1fr) !important; /* força lado-a-lado */
       align-items:center !important;
-      gap:28px !important;
+      column-gap:28px !important;
+      row-gap:0 !important;
+
       margin:32px 0 !important;
       background:var(--brand-bg) !important;
       border-radius:16px !important;
       padding:20px !important;
-
-      /* não deixar quebrar linha no desktop */
-      flex-wrap:nowrap !important;
     }
 
-    /* Coluna do logo: largura responsiva mas fixa como coluna */
     .hero-logo{
-      flex:0 0 clamp(128px, 18vw, 190px) !important; /* nunca “cai” para cima */
-      display:flex !important;
-      align-items:center !important;
-      justify-content:flex-start !important;
-      flex-shrink:0 !important; /* NÃO encolher */
-      min-width:0 !important;
+      width:190px !important;           /* fixa a coluna do logo */
+      justify-self:start !important;     /* garante esquerda */
     }
 
-    /* Badge do ícone (preenchido) */
     .app-badge{
-      width:clamp(120px, 16vw, 156px) !important;
-      height:clamp(120px, 16vw, 156px) !important;
+      width:156px !important;
+      height:156px !important;
       border-radius:28% !important;
       overflow:hidden !important;
       box-shadow:0 2px 10px rgba(0,0,0,.05) !important;
@@ -75,30 +69,26 @@
       background:transparent !important;
     }
 
-    /* Coluna do texto: deixa encolher e ocupar o resto */
     .hero-copy{
-      flex:1 1 auto !important;
-      min-width:0 !important;            /* evita overflow e quebra forçada */
+      min-width:0 !important; /* deixa o texto encolher sem empurrar o logo */
     }
-    .hero-copy h1,
-    .hero-copy .lead,
-    .hero-copy p{
+    .hero-copy h1, .hero-copy .lead, .hero-copy p{
       margin-top:0;
-      word-wrap:break-word;
-      overflow-wrap:break-word;
+      overflow-wrap:anywhere;
     }
 
-    /* Só empilha em ecrãs MUITO pequenos */
-    @media (max-width: 520px){
+    /* Só empilha em ecrãs muito pequenos */
+    @media (max-width: 560px){
       .hero{
-        flex-wrap:wrap !important;
+        grid-template-columns: 1fr !important; /* empilha */
         text-align:center !important;
+        row-gap:10px !important;
       }
       .hero-logo{
-        flex:0 0 100% !important;
-        justify-content:center !important;
-        margin-bottom:8px !important;
+        width:auto !important;
+        justify-self:center !important;
       }
+      .app-badge{ width:132px !important; height:132px !important; }
       .hero-copy{ text-align:left !important; }
     }
   </style>
@@ -112,64 +102,8 @@
     </nav>
   </header>
 
-  <div class="container">
-    <section class="hero" aria-labelledby="hero-title">
-      <!-- LOGO (lado esquerdo, sem bordas) -->
-      <div class="hero-logo">
-        <div class="app-badge">
-          <img
-            class="badge-img"
-            src="/assets/logo.png"
-            alt="Ícone da app SOS Ansiedade"
-            width="156" height="156"
-            loading="eager" decoding="async"
-          />
-        </div>
-      </div>
+  <div class="container
 
-      <div class="hero-copy">
-        <h1 id="hero-title">SOS Ansiedade</h1>
-        <p class="lead">
-          Ferramentas simples e eficazes para te ajudar a respirar, recentrar e reduzir a ansiedade — em qualquer lugar.
-        </p>
-
-        <p role="note" style="margin:8px 0; color:#6b6b6b; font-size:14px">
-          <strong>Aviso:</strong> esta app não substitui apoio profissional. Em emergência, liga <strong>112</strong>.
-        </p>
-
-        <div class="cta" role="group" aria-label="Instalar a app">
-          <a class="btn primary" href="#" aria-disabled="true">Instalar no Android</a>
-          <a class="btn" href="#" aria-disabled="true">Instalar no iOS</a>
-        </div>
-
-        <p class="help">
-          Precisas de ajuda? <a href="mailto:suporte@sosansiedade.com">suporte@sosansiedade.com</a>
-        </p>
-      </div>
-    </section>
-
-    <main id="conteudo">
-      <h2>O que encontras na app</h2>
-      <ul>
-        <li>Exercícios guiados de respiração e grounding</li>
-        <li>Áudio-guias e dicas práticas</li>
-        <li>Funciona offline</li>
-        <li>Opção Premium para conteúdo extra</li>
-      </ul>
-    </main>
-
-    <footer class="footer" role="contentinfo">
-      © <span id="y"></span> SOS Ansiedade ·
-      <a href="./privacy.html">Privacidade</a> ·
-      <a href="./terms.html">Termos</a>
-    </footer>
-  </div>
-
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
 
 
 
