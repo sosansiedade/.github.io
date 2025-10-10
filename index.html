@@ -28,8 +28,50 @@
   <link rel="apple-touch-icon" href="./assets/icon-180.png" />
   <link rel="manifest" href="./manifest.webmanifest" />
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="./styles.css" />
+  <!-- CSS (com cache buster) -->
+  <link rel="stylesheet" href="./styles.css?v=4" />
+
+  <!-- ===== FIX do HERO (inline, com !important) ===== -->
+  <style id="hero-fix">
+    .hero{
+      display:grid !important;
+      grid-template-columns: 100px 1fr !important;  /* coluna do logo + coluna do texto */
+      column-gap: 64px !important;                  /* espaço grande entre logo e texto */
+      align-items:start !important;
+      margin:32px 0 !important;
+    }
+    .hero-logo{
+      grid-column:1 !important;
+      align-self:start !important;
+      justify-self:start !important;
+    }
+    .hero-logo img{
+      width:84px !important; height:84px !important; /* mais pequeno */
+      display:block !important;
+      position:static !important;
+      float:none !important;
+      margin:0 !important;
+      object-fit:contain !important;
+      background:#fff !important;
+      border-radius:28% !important;
+      border:1px solid rgba(0,0,0,.06) !important;
+      box-shadow:0 2px 10px rgba(0,0,0,.05) !important;
+    }
+    .hero-copy{
+      grid-column:2 !important;
+      min-width:0 !important;
+    }
+    @media (max-width:640px){
+      .hero{
+        grid-template-columns:1fr !important;
+        row-gap:14px !important;
+        text-align:center !important;
+      }
+      .hero-logo{ justify-self:center !important; }
+      .hero-logo img{ width:96px !important; height:96px !important; }
+      .hero-copy{ grid-column:1 !important; }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header" role="banner">
@@ -42,28 +84,27 @@
 
   <div class="container">
     <section class="hero" aria-labelledby="hero-title">
-      <!-- LOGO DA APP (com fallback automático) -->
-      <img
-        id="appLogo"
-        alt="Ícone da app SOS Ansiedade"
-        width="180" height="180"
-        loading="eager" decoding="async"
-        style="width:180px;height:180px;border-radius:28%;object-fit:cover;border:1px solid rgba(0,0,0,.06)"
-      />
+      <!-- LOGO (ajusta o src se precisares) -->
+      <div class="hero-logo">
+        <img
+          src="/assets/logo.png"
+          alt="Ícone da app SOS Ansiedade"
+          width="84" height="84"
+          loading="eager" decoding="async"
+        />
+      </div>
 
-      <div>
+      <div class="hero-copy">
         <h1 id="hero-title">SOS Ansiedade</h1>
         <p class="lead">
           Ferramentas simples e eficazes para te ajudar a respirar, recentrar e reduzir a ansiedade — em qualquer lugar.
         </p>
 
-        <!-- Aviso clínico/ética -->
         <p role="note" style="margin:8px 0; color:#6b6b6b; font-size:14px">
           <strong>Aviso:</strong> esta app não substitui apoio profissional. Em emergência, liga <strong>112</strong>.
         </p>
 
         <div class="cta" role="group" aria-label="Instalar a app">
-          <!-- Substitui pelos links reais das lojas quando tiveres -->
           <a class="btn primary" href="#" aria-disabled="true">Instalar no Android</a>
           <a class="btn" href="#" aria-disabled="true">Instalar no iOS</a>
         </div>
@@ -92,44 +133,7 @@
   </div>
 
   <script>
-    // ano no rodapé
     document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Carrega o logo tentando vários caminhos (sem CORS) e com fallback final para o ficheiro no outro repo
-    (function() {
-      const candidates = [
-        '/assets7/logo.png',   // onde disseste que está no site
-        '/assets/logo.png',    // caminho standard (recomendado)
-        './assets7/logo.png',  // relativos (casos de subdiretórios)
-        './assets/logo.png',
-        '/logo.png',
-        // Fallback: imagem no outro repositório (funciona já)
-        'https://raw.githubusercontent.com/sosansiedade/.github.io/main/assets7/logo.png'
-      ];
-
-      const imgEl = document.getElementById('appLogo');
-
-      (function tryNext(i) {
-        if (i >= candidates.length) {
-          imgEl.alt = 'Logo não encontrado';
-          imgEl.style.background = '#fff';
-          imgEl.style.display = 'flex';
-          console.error('Nenhum caminho de logo funcionou:', candidates);
-          return;
-        }
-        const test = new Image();
-        test.onload = function() {
-          imgEl.src = candidates[i] + (candidates[i].startsWith('http') ? '' : ('?v=' + Date.now()));
-          console.info('Logo carregado de:', candidates[i]);
-        };
-        test.onerror = function() {
-          tryNext(i + 1);
-        };
-        test.src = candidates[i] + (candidates[i].startsWith('http') ? '' : ('?v=' + Date.now()));
-      })(0);
-    })();
   </script>
 </body>
 </html>
-
-
