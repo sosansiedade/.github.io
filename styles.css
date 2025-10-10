@@ -28,7 +28,7 @@ html,body{
 .hero{
   display:grid;
   grid-template-columns:110px 1fr; /* coluna do logo + coluna do texto */
-  column-gap:32px;
+  column-gap:52px;
   align-items:start;
   margin:32px 0;
 }
