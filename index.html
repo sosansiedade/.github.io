@@ -6,53 +6,64 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Ferramentas rápidas de respiração, grounding e áudio-guias para acalmar a ansiedade. Funciona offline. Sem anúncios." />
 
+  <!-- Canonical & cores -->
   <link rel="canonical" href="https://www.sosansiedade.com/" />
   <meta name="theme-color" content="#E9DBF5" />
 
+  <!-- Open Graph -->
   <meta property="og:title" content="SOS Ansiedade" />
   <meta property="og:description" content="Ferramentas simples para respirar, recentrar e reduzir a ansiedade — em qualquer lugar." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.sosansiedade.com/" />
   <meta property="og:image" content="https://www.sosansiedade.com/assets/feature.png" />
 
+  <!-- Favicon & PWA -->
   <link rel="icon" href="./favicon.png" sizes="32x32" />
   <link rel="apple-touch-icon" href="./assets/icon-180.png" />
   <link rel="manifest" href="./manifest.webmanifest" />
 
+  <!-- CSS do site -->
   <link rel="stylesheet" href="./styles.css?v=6" />
 
-  <!-- ===== HERO: logo à esquerda + badge 100% preenchido ===== -->
+  <!-- ===== HERO (logo à esquerda + ícone 100% preenchido) ===== -->
   <style>
+    :root{
+      /* ajusta aqui o zoom se ainda vires halo: 110%–130% */
+      --badge-zoom: 122%;
+      --brand-bg: #E9DBF5;
+    }
+
     .hero{
       display:flex;
       align-items:center;
-      gap:24px;                /* aproxima o logo do texto */
+      gap:24px;                 /* aproxima o logo do texto */
       margin:32px 0;
-      background:#E9DBF5;
+      background:var(--brand-bg);
       border-radius:16px;
       padding:20px;
-      flex-wrap:nowrap;        /* lado a lado em desktop */
+      flex-wrap:nowrap;         /* lado a lado em desktop */
     }
     .hero-logo{
-      flex:0 0 auto;           /* tamanho fixo para o logo */
+      flex:0 0 auto;            /* tamanho baseado no conteúdo */
       display:flex;
       align-items:center;
-      justify-content:flex-start; /* garante que fica à esquerda */
+      justify-content:flex-start; /* fica à esquerda */
     }
-    /* Cartão do ícone: completamente cheio */
+    /* Cartão do ícone: completamente cheio, sem bordas brancas */
     .app-badge{
-      width:156px;             /* aumenta/ reduz aqui */
+      width:156px;              /* aumenta/reduz conforme precisares */
       height:156px;
-      border-radius:28%;       /* aspeto de “squircle” de app */
+      border-radius:28%;        /* aspeto de “squircle” de app */
       overflow:hidden;
       box-shadow:0 2px 10px rgba(0,0,0,.05);
-
-      /* Preenchimento total: usa o PNG como background */
-      background:
-        center / cover no-repeat url('/assets/logo.png'),
-        #E9DBF5;               /* cor de fundo tapa transparências */
       border:none;
+
+      /* Preenchimento total com zoom para cortar margens do PNG */
+      background:
+        center / var(--badge-zoom) no-repeat url('/assets/logo.png'),
+        var(--brand-bg);        /* cor por baixo tapa transparências */
     }
+
     .hero-copy{
       flex:1 1 auto;
       min-width:0;
@@ -70,7 +81,7 @@
         margin-bottom:8px;
       }
       .app-badge{ width:132px; height:132px; }
-      .hero-copy{ text-align:left; } /* opcional: mantém texto alinhado à esquerda */
+      .hero-copy{ text-align:left; } /* mantém texto à esquerda, opcional */
     }
   </style>
 </head>
@@ -85,7 +96,7 @@
 
   <div class="container">
     <section class="hero" aria-labelledby="hero-title">
-      <!-- LOGO (lado esquerdo, totalmente preenchido) -->
+      <!-- LOGO (lado esquerdo, 100% preenchido) -->
       <div class="hero-logo">
         <div class="app-badge"></div>
       </div>
@@ -101,6 +112,7 @@
         </p>
 
         <div class="cta" role="group" aria-label="Instalar a app">
+          <!-- Substitui pelos links reais das lojas quando tiveres -->
           <a class="btn primary" href="#" aria-disabled="true">Instalar no Android</a>
           <a class="btn" href="#" aria-disabled="true">Instalar no iOS</a>
         </div>
@@ -133,6 +145,7 @@
   </script>
 </body>
 </html>
+
 
 
 
