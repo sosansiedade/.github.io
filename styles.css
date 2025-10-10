@@ -28,7 +28,7 @@ html,body{
 .hero{
   display:grid;
   grid-template-columns:110px 1fr; /* coluna do logo + coluna do texto */
-  column-gap:32px;
+  column-gap:42px;
   align-items:start;
   margin:32px 0;
 }
@@ -39,7 +39,7 @@ html,body{
   align-self:start;
   justify-self:start;
   display:block;
-  width:100px; height:100px;     /* menor para não tocar no texto */
+  width:92px; height:92px;     /* menor para não tocar no texto */
   object-fit:contain;
   margin:0;
   background:#fff;
