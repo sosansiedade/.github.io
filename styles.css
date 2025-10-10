@@ -9,61 +9,69 @@
 html,body{
   margin:0;padding:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
-  color:var(--text);background:#fff
+  color:var(--text);background:#fff;
 }
 .container{max-width:960px;margin:0 auto;padding:24px}
 
 /* nav */
 .nav{
   display:flex;gap:16px;flex-wrap:wrap;align-items:center;
-  padding:16px 24px;background:var(--brand);border-bottom:1px solid #ddd
+  padding:16px 24px;background:var(--brand);border-bottom:1px solid #ddd;
 }
 .nav a{
   text-decoration:none;color:#222;font-weight:600;
-  padding:8px 12px;border-radius:12px
+  padding:8px 12px;border-radius:12px;
 }
 .nav a.active,.nav a:hover{background:#fff}
 
-/* HERO (logo + texto) */
+/* ----- HERO (fix definitivo) ----- */
 .hero{
   display:grid;
-  grid-template-columns: 120px 1fr; /* coluna do logo mais estreita */
-  gap:28px;                         /* mais espaço entre logo e texto */
-  align-items:center;
+  grid-template-columns:110px 1fr; /* coluna do logo + coluna do texto */
+  column-gap:32px;
+  align-items:start;
   margin:32px 0;
 }
 
-/* Ícone da app (não sobrepor texto) */
-.hero img{
-  width:112px;height:112px;         /* menor para garantir folga */
+/* imagem do hero (logo) ocupa SEMPRE a 1ª coluna */
+.hero > img{
+  grid-column:1;
+  align-self:start;
+  justify-self:start;
+  display:block;
+  width:100px; height:100px;     /* menor para não tocar no texto */
   object-fit:contain;
-  justify-self:start;               /* encosta à esquerda da coluna */
-  margin-left:-8px;                 /* empurra ligeiramente para a esquerda */
+  margin:0;
   background:#fff;
-  border-radius:28%;                /* look de app */
+  border-radius:28%;
   border:1px solid rgba(0,0,0,.06);
   box-shadow:0 2px 10px rgba(0,0,0,.05);
 }
 
-/* Conteúdo do hero */
-.hero-copy{min-width:0}
+/* bloco de texto ocupa SEMPRE a 2ª coluna */
+.hero > div{
+  grid-column:2;
+  min-width:0;                   /* evita que o texto invada a 1ª coluna */
+}
+
+/* tipografia do hero */
 .lead{margin:8px 0 10px;color:#2b2b2b}
 
 /* CTA */
 .cta{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}
 .btn{
   display:inline-block;padding:12px 16px;border-radius:12px;
-  border:1px solid #ccc;text-decoration:none;color:#111;background:#fff
+  border:1px solid #ccc;text-decoration:none;color:#111;background:#fff;
 }
 .btn.primary{background:#111;color:#fff;border-color:#111}
 
-/* footer e tipografia */
+/* footer & texto */
 .footer{margin:40px 0;color:var(--muted);font-size:14px}
 h1,h2{margin:0 0 12px}
 main p{line-height:1.6}
 kbd{
   background:#f3f3f3;border:1px solid #ddd;border-bottom-color:#ccc;
-  border-radius:6px;padding:2px 6px
+  border-radius:6px;padding:2px 6px;
 }
 
 /* Acessibilidade: foco visível */
@@ -74,102 +82,21 @@ kbd{
   *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important}
 }
 
-/* Mobile: empilha e reduz ligeiramente o ícone */
+/* ----- RESPONSIVO ----- */
 @media (max-width:640px){
   .hero{
-    grid-template-columns:1fr; /* logo em cima, texto em baixo */
-    text-align:center;gap:14px;
+    grid-template-columns:1fr;   /* empilha: logo em cima, texto em baixo */
+    row-gap:14px;
+    text-align:center;
   }
-  .hero img{
-    justify-self:center;margin-left:0;
-    width:108px;height:108px;   /* um toque menor no telemóvel */
+  .hero > img{
+    grid-column:1;
+    justify-self:center;
+    width:108px; height:108px;   /* ligeiramente maior no centro */
   }
-}
-:root{
-  --brand:#E9DBF5;
-  --text:#1f1f1f;
-  --muted:#6b6b6b;
-}
-
-/* base */
-*{box-sizing:border-box}
-html,body{
-  margin:0;padding:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
-  color:var(--text);background:#fff
-}
-.container{max-width:960px;margin:0 auto;padding:24px}
-
-/* nav */
-.nav{
-  display:flex;gap:16px;flex-wrap:wrap;align-items:center;
-  padding:16px 24px;background:var(--brand);border-bottom:1px solid #ddd
-}
-.nav a{
-  text-decoration:none;color:#222;font-weight:600;
-  padding:8px 12px;border-radius:12px
-}
-.nav a.active,.nav a:hover{background:#fff}
-
-/* HERO (logo + texto) */
-.hero{
-  display:grid;
-  grid-template-columns: 120px 1fr; /* coluna do logo mais estreita */
-  gap:28px;                         /* mais espaço entre logo e texto */
-  align-items:center;
-  margin:32px 0;
-}
-
-/* Ícone da app (não sobrepor texto) */
-.hero img{
-  width:112px;height:112px;         /* menor para garantir folga */
-  object-fit:contain;
-  justify-self:start;               /* encosta à esquerda da coluna */
-  margin-left:-8px;                 /* empurra ligeiramente para a esquerda */
-  background:#fff;
-  border-radius:28%;                /* look de app */
-  border:1px solid rgba(0,0,0,.06);
-  box-shadow:0 2px 10px rgba(0,0,0,.05);
-}
-
-/* Conteúdo do hero */
-.hero-copy{min-width:0}
-.lead{margin:8px 0 10px;color:#2b2b2b}
-
-/* CTA */
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}
-.btn{
-  display:inline-block;padding:12px 16px;border-radius:12px;
-  border:1px solid #ccc;text-decoration:none;color:#111;background:#fff
-}
-.btn.primary{background:#111;color:#fff;border-color:#111}
-
-/* footer e tipografia */
-.footer{margin:40px 0;color:var(--muted);font-size:14px}
-h1,h2{margin:0 0 12px}
-main p{line-height:1.6}
-kbd{
-  background:#f3f3f3;border:1px solid #ddd;border-bottom-color:#ccc;
-  border-radius:6px;padding:2px 6px
-}
-
-/* Acessibilidade: foco visível */
-:focus-visible{outline:3px solid #7b5cb0;outline-offset:2px}
-
-/* Preferência do utilizador: reduzir animações */
-@media (prefers-reduced-motion: reduce){
-  *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important}
-}
-
-/* Mobile: empilha e reduz ligeiramente o ícone */
-@media (max-width:640px){
-  .hero{
-    grid-template-columns:1fr; /* logo em cima, texto em baixo */
-    text-align:center;gap:14px;
-  }
-  .hero img{
-    justify-self:center;margin-left:0;
-    width:108px;height:108px;   /* um toque menor no telemóvel */
+  .hero > div{
+    grid-column:1;
   }
 }
+
 
