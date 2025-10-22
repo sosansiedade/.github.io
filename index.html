@@ -19,7 +19,6 @@
   <link rel="apple-touch-icon" href="./assets/icon-180.png" />
   <link rel="manifest" href="./manifest.webmanifest" />
 
-  <!-- Mantém o teu CSS externo se quiseres -->
   <link rel="stylesheet" href="./styles.css?v=6" />
 
   <style>
@@ -57,16 +56,15 @@
       padding:20px !important;
     }
 
-    /* ESQUERDA: ícone + botões por baixo */
+    /* ESQUERDA: ícone + botões por baixo (centrados) */
     #hero-fixed .hero-left{
       flex: 0 0 var(--left-col-width) !important;  /* largura fixa */
       display: flex !important;
       flex-direction: column !important;
-      align-items: flex-start !important;
-      gap: 14px !important; /* espaço entre ícone e botões */
+      align-items: flex-start !important; /* coluna continua ancorada à esquerda */
+      gap: 14px !important;              /* espaço entre ícone e botões */
       min-width: 0 !important;
     }
-
     /* Caixa do ícone (centraliza e corta excesso) */
     #hero-fixed .logo-box{
       width: var(--logo-box) !important;
@@ -87,13 +85,17 @@
       transform-origin: center !important;
     }
 
-    /* Botões de loja (por baixo do ícone) */
-    .store-buttons{
+    /* Botões centrados por baixo do ícone (mesma largura do quadrado) */
+    #hero-fixed .store-buttons{
+      align-self: center !important;        /* centra o bloco na coluna esquerda */
+      justify-content: center !important;   /* centra os botões entre si */
+      width: var(--logo-box) !important;    /* mesma largura da caixa do ícone */
       display:flex !important;
       flex-wrap: wrap !important;
       gap: 10px !important;
+      text-align:center !important;
     }
-    .store-btn{
+    #hero-fixed .store-btn{
       display:inline-flex !important;
       align-items:center !important;
       gap:10px !important;
@@ -105,18 +107,20 @@
       line-height:1 !important;
       transition: transform .06s ease, box-shadow .12s ease !important;
       user-select:none !important;
+      justify-content:center !important;    /* centra conteúdo dentro do botão */
+      width: 100% !important;               /* cada botão ocupa a largura da caixa */
     }
-    .store-btn:hover{ transform: translateY(-1px); box-shadow:0 3px 10px rgba(0,0,0,.12) !important; }
-    .store-btn small{ display:block; font-weight:500; opacity:.8; font-size:.78rem; line-height:1.1; }
-    .store-btn .label{ display:flex; flex-direction:column; }
+    #hero-fixed .store-btn:hover{ transform: translateY(-1px); box-shadow:0 3px 10px rgba(0,0,0,.12) !important; }
+    #hero-fixed .store-btn small{ display:block; font-weight:500; opacity:.8; font-size:.78rem; line-height:1.1; }
+    #hero-fixed .store-btn .label{ display:flex; flex-direction:column; }
 
     /* Apple: preto, texto branco */
-    .store-btn.apple{ background:#111 !important; color:#fff !important; border:1px solid #111 !important; }
+    #hero-fixed .store-btn.apple{ background:#111 !important; color:#fff !important; border:1px solid #111 !important; }
     /* Google: branco, texto preto, com contorno */
-    .store-btn.google{ background:#fff !important; color:#111 !important; border:1px solid rgba(0,0,0,.18) !important; }
+    #hero-fixed .store-btn.google{ background:#fff !important; color:#111 !important; border:1px solid rgba(0,0,0,.18) !important; }
 
     /* Ícones SVG dentro dos botões (herdam cor do texto) */
-    .store-btn svg{ width:18px; height:18px; display:block; }
+    #hero-fixed .store-btn svg{ width:18px; height:18px; display:block; }
 
     /* DIREITA: texto ocupa o resto do espaço */
     #hero-fixed .hero-right{
@@ -134,6 +138,17 @@
       line-height:1.6 !important;
       margin-bottom:8px !important;
     }
+
+    /* Opcional: em ecrãs muito estreitos, manter lado-a-lado e reduzir ligeiro */
+    @media (max-width:560px){
+      #hero-fixed .logo-box{
+        width: 190px !important; height: 190px !important;
+      }
+      #hero-fixed .store-buttons{
+        width: 190px !important;
+        flex-direction: column !important; /* um por linha, sempre centrado */
+      }
+    }
   </style>
 </head>
 <body>
@@ -146,7 +161,7 @@
   </header>
 
   <main class="container" role="main">
-    <!-- HERO: coluna ESQUERDA (ícone + botões) + coluna DIREITA (texto) -->
+    <!-- HERO: coluna ESQUERDA (ícone + botões centrados) + coluna DIREITA (texto) -->
     <section id="hero-fixed" aria-label="Apresentação da app SOS Ansiedade">
       <!-- COLUNA ESQUERDA -->
       <div class="hero-left">
