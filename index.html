@@ -19,78 +19,88 @@
   <link rel="apple-touch-icon" href="./assets/icon-180.png" />
   <link rel="manifest" href="./manifest.webmanifest" />
 
+  <!-- Mantém o teu CSS externo se quiseres -->
   <link rel="stylesheet" href="./styles.css?v=6" />
 
   <style>
-    /* ===== Reset mínimo dentro do hero para evitar interferências ===== */
-    .hero, .hero * { box-sizing: border-box; }
-
+    /* ================== Variáveis rápidas para afinar ================== */
     :root{
-      --brand-bg:#E9DBF5;
+      --brand-bg:#E9DBF5;      /* fundo do hero */
+      --logo-col-width:220px;  /* largura fixa da coluna do logo (esquerda) */
+      --logo-size:184px;       /* 🔧 tamanho da caixa do logo */
+      --logo-radius:24%;       /* cantos arredondados do “quadrado” do logo */
     }
 
-    /* ===== Layout geral ===== */
+    /* ================== Layout geral ================== */
     .container{
       max-width: 980px;
       margin: 0 auto;
       padding: 0 16px;
     }
 
-    /* ===== HERO: logo à esquerda + texto à direita ===== */
+    /* ================== HERO (logo à esquerda + texto à direita) ================== */
+    .hero, .hero * { box-sizing: border-box; }
     .hero{
       display:grid !important;
-      grid-template-columns: 190px minmax(0, 1fr) !important;
+      grid-template-columns: var(--logo-col-width) minmax(0,1fr) !important;
       align-items:center !important;
       column-gap:28px !important;
-      row-gap:0 !important;
-
       margin:32px 0 !important;
       background:var(--brand-bg) !important;
       border-radius:16px !important;
       padding:20px !important;
     }
 
+    /* Coluna esquerda (fixa) */
     .hero-logo{
-      width:190px !important;          /* fixa a coluna do logo */
-      justify-self:start !important;    /* encosta à esquerda */
+      justify-self:start !important;  /* encosta a coluna à esquerda */
+      width: var(--logo-col-width) !important;
     }
 
-    /* Logo quadrado com cantos suaves (mantém proporção) */
-    .logo-img{
-      display:block !important;
-      width:156px !important;
-      height:156px !important;
-      object-fit:contain !important;
-      border-radius:24% !important;
-      background:#fff0 !important;     /* transparente */
+    /* Caixa do logo: mantém o logo centrado e do tamanho certo */
+    .logo-box{
+      width: var(--logo-size) !important;
+      height: var(--logo-size) !important;
+      border-radius: var(--logo-radius) !important;
+      overflow:hidden !important;
+      display:grid !important;
+      place-items:center !important;     /* centra a imagem */
       box-shadow:0 2px 10px rgba(0,0,0,.05) !important;
+      background: #fff0 !important;      /* transparente (ou muda se quiseres) */
     }
 
-    .hero-copy{
-      min-width:0 !important;
+    /* A própria imagem do logo */
+    .logo-img{
+      max-width:100% !important;
+      max-height:100% !important;
+      width:100% !important;
+      height:100% !important;
+      object-fit:contain !important;     /* cabe sem cortar */
+      display:block !important;
     }
+
+    /* Coluna direita (texto) */
+    .hero-copy{ min-width:0 !important; }
     .hero-copy h1, .hero-copy .lead, .hero-copy p{
-      margin-top:0;
-      overflow-wrap:anywhere;
+      margin-top:0; overflow-wrap:anywhere;
     }
-    .lead{
-      font-size:1.125rem;
-      line-height:1.6;
-      margin-bottom:8px;
-    }
+    .lead{ font-size:1.125rem; line-height:1.6; margin-bottom:8px; }
 
-    /* ===== Responsivo: empilha em ecrãs pequenos ===== */
+    /* ================== Responsivo (empilha no mobile) ================== */
     @media (max-width: 560px){
       .hero{
         grid-template-columns: 1fr !important;
         text-align:center !important;
-        row-gap:10px !important;
+        row-gap:12px !important;
       }
       .hero-logo{
+        justify-self:center !important;  /* centra a coluna quando empilha */
         width:auto !important;
-        justify-self:center !important;
       }
-      .logo-img{ width:132px !important; height:132px !important; }
+      .logo-box{
+        width: 156px !important;         /* um pouco menor no mobile */
+        height: 156px !important;
+      }
       .hero-copy{ text-align:left !important; }
     }
   </style>
@@ -108,16 +118,17 @@
     <!-- HERO: Logo à esquerda + Texto à direita -->
     <section class="hero" aria-label="Apresentação da app SOS Ansiedade">
       <div class="hero-logo">
-        <!-- usa o logo existente no repositório -->
-        <img class="logo-img" src="./assets/logo.png" alt="Logótipo SOS Ansiedade">
+        <div class="logo-box">
+          <!-- usa o ficheiro que confirmaste no GitHub Pages -->
+          <img class="logo-img" src="/assets/logo.png" alt="Logótipo SOS Ansiedade">
+        </div>
       </div>
 
       <div class="hero-copy">
         <h1>SOS Ansiedade – Apoio na palma da tua mão</h1>
         <p class="lead">Ferramentas rápidas de respiração, grounding e áudio-guias para acalmar a ansiedade. Funciona offline. Sem anúncios.</p>
         <p>Em poucos toques, encontra exercícios de respiração guiada, técnicas de grounding 5-4-3-2-1, meditações curtas e um modo SOS para momentos mais intensos. Desenhado para ser simples, discreto e eficaz — em casa, no trabalho ou em viagem.</p>
-        <!-- Botões (opcional) -->
-        <!--
+        <!-- Botões (opcional)
         <p>
           <a class="store-btn" href="#" rel="noopener">App Store</a>
           <a class="store-btn" href="#" rel="noopener">Google Play</a>
