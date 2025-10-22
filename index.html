@@ -27,12 +27,13 @@
       --hero-radius:16px;
 
       /* Coluna esquerda (ícone + botões) */
-      --left-col-width: 300px;  /* largura da coluna esquerda */
-      --logo-box:       220px;  /* tamanho do quadrado do ícone */
+      --left-col-width: 300px;
+      --logo-box:       220px;
       --logo-radius:    28%;
-      --logo-scale:     1.22;   /* aproxima o logo dentro da caixa */
-      --gap:            28px;   /* espaço entre colunas */
-      --btn-gap:        10px;   /* espaço entre botões */
+      --logo-scale:     1.22;
+      --gap:            28px;
+      --btn-gap:        10px;
+      --icon-size:      20px;  /* tamanho dos símbolos nos botões */
     }
 
     .container{
@@ -41,12 +42,12 @@
       padding: 0 16px;
     }
 
-    /* ================== HERO (lado-a-lado SEMPRE) ================== */
+    /* HERO (lado-a-lado SEMPRE) */
     #hero-fixed, #hero-fixed * { box-sizing: border-box; }
     #hero-fixed{
       display:flex !important;
       flex-direction: row !important;
-      flex-wrap: nowrap !important;     /* impede empilhar */
+      flex-wrap: nowrap !important;
       align-items: center !important;
       gap: var(--gap) !important;
 
@@ -58,10 +59,10 @@
 
     /* ESQUERDA: ícone + botões centrados e alinhados */
     #hero-fixed .hero-left{
-      flex: 0 0 var(--left-col-width) !important;  /* largura fixa da coluna */
+      flex: 0 0 var(--left-col-width) !important;
       display: flex !important;
       flex-direction: column !important;
-      align-items: center !important;  /* <- centra HORIZONTALMENTE tudo na coluna */
+      align-items: center !important;
       gap: 14px !important;
       min-width: 0 !important;
     }
@@ -88,18 +89,18 @@
 
     /* Botões: bloco com MESMA largura do ícone e centrado */
     #hero-fixed .store-buttons{
-      width: var(--logo-box) !important;        /* igual à caixa do ícone */
+      width: var(--logo-box) !important;
       display:flex !important;
-      flex-direction: column !important;        /* um por cima do outro */
+      flex-direction: column !important;
       gap: var(--btn-gap) !important;
-      align-items: stretch !important;          /* botões ocupam a largura toda */
+      align-items: stretch !important;
       justify-content: center !important;
       text-align:center !important;
     }
     #hero-fixed .store-btn{
       display:inline-flex !important;
       align-items:center !important;
-      justify-content:center !important;        /* conteúdo centrado */
+      justify-content:center !important;
       gap:10px !important;
       min-height:44px !important;
       padding:10px 14px !important;
@@ -109,21 +110,25 @@
       line-height:1 !important;
       transition: transform .06s ease, box-shadow .12s ease !important;
       user-select:none !important;
-      width: 100% !important;                   /* ocupa toda a largura (logo-box) */
+      width: 100% !important;
     }
     #hero-fixed .store-btn:hover{ transform: translateY(-1px); box-shadow:0 3px 10px rgba(0,0,0,.12) !important; }
     #hero-fixed .store-btn small{ display:block; font-weight:500; opacity:.8; font-size:.78rem; line-height:1.1; }
     #hero-fixed .store-btn .label{ display:flex; flex-direction:column; }
 
     /* Apple: preto, texto branco */
-    #hero-fixed .store-btn.apple{ background:#111 !important; color:#fff !important; border:1px solid #111 !important; }
+    #hero-fixed .store-btn.apple{
+      background:#111 !important; color:#fff !important; border:1px solid #111 !important;
+    }
     /* Google: branco, texto preto, com contorno */
-    #hero-fixed .store-btn.google{ background:#fff !important; color:#111 !important; border:1px solid rgba(0,0,0,.18) !important; }
+    #hero-fixed .store-btn.google{
+      background:#fff !important; color:#111 !important; border:1px solid rgba(0,0,0,.18) !important;
+    }
 
-    /* Ícones SVG nos botões (herdam a cor do texto) */
-    #hero-fixed .store-btn svg{ width:18px; height:18px; display:block; }
+    /* Ajuste universal aos SVGs dos botões */
+    #hero-fixed .store-btn svg{ width: var(--icon-size); height: var(--icon-size); display:block; }
 
-    /* DIREITA: texto ocupa o resto do espaço */
+    /* DIREITA: texto */
     #hero-fixed .hero-right{
       flex: 1 1 auto !important;
       min-width: 0 !important;
@@ -140,7 +145,6 @@
       margin-bottom:8px !important;
     }
 
-    /* Ajustes opcionais para ecrãs muito estreitos (mantém lado-a-lado) */
     @media (max-width:560px){
       :root{
         --left-col-width: 280px;
@@ -168,9 +172,9 @@
         </div>
 
         <div class="store-buttons" aria-label="Descarregar a app">
-          <!-- APP STORE (preto) -->
+          <!-- APP STORE (símbolo oficial) -->
           <a class="store-btn apple" href="#" aria-label="Brevemente na App Store">
-            <!-- ícone Apple (SVG) -->
+            <!-- Apple logo: monocromático, herda cor do botão -->
             <svg viewBox="0 0 850 1000" aria-hidden="true" focusable="false">
               <path fill="currentColor" d="M567 80c-38 45-91 72-145 68-7-53 21-110 56-145 38-45 101-77 153-78 5 54-23 109-64 155zM736 1000c-47 14-96 0-132-22-35-21-66-21-103 0-56 33-107 30-160 8-109-47-214-213-214-365 0-141 92-223 180-223 49 0 85 25 114 25 27 0 77-27 134-27 40 0 82 15 117 58-103 63-87 224 17 270-11 28-24 55-39 81-32 56-68 104-114 195z"/>
             </svg>
@@ -180,11 +184,33 @@
             </span>
           </a>
 
-          <!-- GOOGLE PLAY (branco com contorno) -->
+          <!-- GOOGLE PLAY (símbolo oficial multicolor) -->
           <a class="store-btn google" href="#" aria-label="Brevemente na Google Play">
-            <!-- ícone Play (SVG) -->
+            <!-- Triângulo Google Play em 4 cores oficiais -->
             <svg viewBox="0 0 512 512" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M325.3 234.3L104.2 13.2c-6.6-6.6-17.5-1.9-17.5 7.4v470.8c0 9.3 10.9 14 17.5 7.4l221.1-221.1 86.8-86.8-86.8-86.6zM386.1 173.5l69.5-69.5c9.4-9.4 2.7-25.6-10.6-25.6H418c-4.1 0-8 1.6-10.9 4.5l-64.5 64.5 43.5 43.6zM342.6 338.5l64.5 64.5c2.9 2.9 6.8 4.5 10.9 4.5h27.1c13.2 0 20-16.3 10.6-25.6l-69.5-69.5-43.6 43.6z"/>
+              <defs>
+                <linearGradient id="gp-a" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#00A0FF"/>
+                  <stop offset="100%" stop-color="#00E3FF"/>
+                </linearGradient>
+                <linearGradient id="gp-b" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#FFE000"/>
+                  <stop offset="100%" stop-color="#FF9A00"/>
+                </linearGradient>
+                <linearGradient id="gp-c" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#FF3A44"/>
+                  <stop offset="100%" stop-color="#C31162"/>
+                </linearGradient>
+                <linearGradient id="gp-d" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#32A071"/>
+                  <stop offset="100%" stop-color="#00D775"/>
+                </linearGradient>
+              </defs>
+              <!-- dividido como no logótipo oficial -->
+              <path d="M48 21c-5-5-13-1.4-13 6.4v457.2c0 7.8 8.5 11.4 13 6.4L280.3 266.4 345 202 280.3 137.6 48 21z" fill="url(#gp-a)"/>
+              <path d="M345 202l72.2-72.2c6.1-6.1 1.8-16.5-6.8-16.5h-55.3c-2.6 0-5.1 1-6.9 2.9l-68 68L345 202z" fill="url(#gp-b)"/>
+              <path d="M280.3 266.4l-68 68c-1.8 1.8-2.9 4.3-2.9 6.9v55.3c0 8.6 10.4 12.9 16.5 6.8L345 266 280.3 266.4z" fill="url(#gp-c)"/>
+              <path d="M417.2 129.8L345 202l-72.2 64.4L417.2 338c3 1.7 6.8-0.5 6.8-3.9V133.7c0-3.4-3.8-5.6-6.8-3.9z" fill="url(#gp-d)"/>
             </svg>
             <span class="label">
               <small>Disponível na</small>
@@ -224,4 +250,5 @@
   </script>
 </body>
 </html>
+
 
