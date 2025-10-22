@@ -27,11 +27,12 @@
       --hero-radius:16px;
 
       /* Coluna esquerda (ícone + botões) */
-      --left-col-width: 280px;   /* largura fixa da coluna esquerda */
-      --logo-box:       210px;   /* tamanho do quadrado do ícone */
-      --logo-radius:    28%;     /* cantos do quadrado do ícone */
-      --logo-scale:     1.22;    /* aproxima o logo dentro da caixa */
-      --gap:            28px;    /* espaço entre colunas */
+      --left-col-width: 300px;  /* largura da coluna esquerda */
+      --logo-box:       220px;  /* tamanho do quadrado do ícone */
+      --logo-radius:    28%;
+      --logo-scale:     1.22;   /* aproxima o logo dentro da caixa */
+      --gap:            28px;   /* espaço entre colunas */
+      --btn-gap:        10px;   /* espaço entre botões */
     }
 
     .container{
@@ -42,11 +43,10 @@
 
     /* ================== HERO (lado-a-lado SEMPRE) ================== */
     #hero-fixed, #hero-fixed * { box-sizing: border-box; }
-    /* usamos flex row + nowrap para não empilhar em mobile */
     #hero-fixed{
       display:flex !important;
       flex-direction: row !important;
-      flex-wrap: nowrap !important;   /* impede empilhar */
+      flex-wrap: nowrap !important;     /* impede empilhar */
       align-items: center !important;
       gap: var(--gap) !important;
 
@@ -56,16 +56,17 @@
       padding:20px !important;
     }
 
-    /* ESQUERDA: ícone + botões por baixo (centrados) */
+    /* ESQUERDA: ícone + botões centrados e alinhados */
     #hero-fixed .hero-left{
-      flex: 0 0 var(--left-col-width) !important;  /* largura fixa */
+      flex: 0 0 var(--left-col-width) !important;  /* largura fixa da coluna */
       display: flex !important;
       flex-direction: column !important;
-      align-items: flex-start !important; /* coluna continua ancorada à esquerda */
-      gap: 14px !important;              /* espaço entre ícone e botões */
+      align-items: center !important;  /* <- centra HORIZONTALMENTE tudo na coluna */
+      gap: 14px !important;
       min-width: 0 !important;
     }
-    /* Caixa do ícone (centraliza e corta excesso) */
+
+    /* Caixa do ícone */
     #hero-fixed .logo-box{
       width: var(--logo-box) !important;
       height: var(--logo-box) !important;
@@ -85,19 +86,20 @@
       transform-origin: center !important;
     }
 
-    /* Botões centrados por baixo do ícone (mesma largura do quadrado) */
+    /* Botões: bloco com MESMA largura do ícone e centrado */
     #hero-fixed .store-buttons{
-      align-self: center !important;        /* centra o bloco na coluna esquerda */
-      justify-content: center !important;   /* centra os botões entre si */
-      width: var(--logo-box) !important;    /* mesma largura da caixa do ícone */
+      width: var(--logo-box) !important;        /* igual à caixa do ícone */
       display:flex !important;
-      flex-wrap: wrap !important;
-      gap: 10px !important;
+      flex-direction: column !important;        /* um por cima do outro */
+      gap: var(--btn-gap) !important;
+      align-items: stretch !important;          /* botões ocupam a largura toda */
+      justify-content: center !important;
       text-align:center !important;
     }
     #hero-fixed .store-btn{
       display:inline-flex !important;
       align-items:center !important;
+      justify-content:center !important;        /* conteúdo centrado */
       gap:10px !important;
       min-height:44px !important;
       padding:10px 14px !important;
@@ -107,8 +109,7 @@
       line-height:1 !important;
       transition: transform .06s ease, box-shadow .12s ease !important;
       user-select:none !important;
-      justify-content:center !important;    /* centra conteúdo dentro do botão */
-      width: 100% !important;               /* cada botão ocupa a largura da caixa */
+      width: 100% !important;                   /* ocupa toda a largura (logo-box) */
     }
     #hero-fixed .store-btn:hover{ transform: translateY(-1px); box-shadow:0 3px 10px rgba(0,0,0,.12) !important; }
     #hero-fixed .store-btn small{ display:block; font-weight:500; opacity:.8; font-size:.78rem; line-height:1.1; }
@@ -119,7 +120,7 @@
     /* Google: branco, texto preto, com contorno */
     #hero-fixed .store-btn.google{ background:#fff !important; color:#111 !important; border:1px solid rgba(0,0,0,.18) !important; }
 
-    /* Ícones SVG dentro dos botões (herdam cor do texto) */
+    /* Ícones SVG nos botões (herdam a cor do texto) */
     #hero-fixed .store-btn svg{ width:18px; height:18px; display:block; }
 
     /* DIREITA: texto ocupa o resto do espaço */
@@ -139,14 +140,11 @@
       margin-bottom:8px !important;
     }
 
-    /* Opcional: em ecrãs muito estreitos, manter lado-a-lado e reduzir ligeiro */
+    /* Ajustes opcionais para ecrãs muito estreitos (mantém lado-a-lado) */
     @media (max-width:560px){
-      #hero-fixed .logo-box{
-        width: 190px !important; height: 190px !important;
-      }
-      #hero-fixed .store-buttons{
-        width: 190px !important;
-        flex-direction: column !important; /* um por linha, sempre centrado */
+      :root{
+        --left-col-width: 280px;
+        --logo-box: 200px;
       }
     }
   </style>
@@ -226,3 +224,4 @@
   </script>
 </body>
 </html>
+
