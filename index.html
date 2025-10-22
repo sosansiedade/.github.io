@@ -31,6 +31,12 @@
     }
 
     /* ===== HERO EM GRID: logo (coluna 1) + texto (coluna 2) ===== */
+    .container{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
     .hero{
       display:grid !important;
       grid-template-columns: 190px minmax(0, 1fr) !important; /* força lado-a-lado */
@@ -76,6 +82,11 @@
       margin-top:0;
       overflow-wrap:anywhere;
     }
+    .lead{
+      font-size:1.125rem;
+      line-height:1.6;
+      margin-bottom:8px;
+    }
 
     /* Só empilha em ecrãs muito pequenos */
     @media (max-width: 560px){
@@ -102,15 +113,49 @@
     </nav>
   </header>
 
-  <div class="container
+  <main class="container" role="main">
+    <!-- HERO: Ícone + Texto -->
+    <section class="hero" aria-label="Apresentação da app SOS Ansiedade">
+      <div class="hero-logo">
+        <figure class="app-badge" role="img" aria-label="Ícone da app SOS Ansiedade">
+          <!-- Troca o src se o teu ícone estiver noutro caminho -->
+          <img class="badge-img" src="./assets/icon-180.png" alt="Ícone da app SOS Ansiedade">
+        </figure>
+      </div>
 
+      <div class="hero-copy">
+        <h1>SOS Ansiedade – Apoio na palma da tua mão</h1>
+        <p class="lead">Ferramentas rápidas de respiração, grounding e áudio-guias para acalmar a ansiedade. Funciona offline. Sem anúncios.</p>
+        <p>Em poucos toques, encontra exercícios de respiração guiada, técnicas de grounding 5-4-3-2-1, meditações curtas e um modo SOS para momentos mais intensos. Desenhado para ser simples, discreto e eficaz — em casa, no trabalho ou em viagem.</p>
+        <!-- Botões (opcional): descomenta se já tiveres as ligações
+        <p>
+          <a class="store-btn" href="https://apps.apple.com/" rel="noopener">App Store</a>
+          <a class="store-btn" href="https://play.google.com/" rel="noopener">Google Play</a>
+        </p>
+        -->
+      </div>
+    </section>
 
+    <!-- Conteúdo adicional (opcional) -->
+    <section>
+      <h2>O que encontras na app</h2>
+      <ul>
+        <li>Respiração guiada com ritmos simples.</li>
+        <li>Grounding sensorial (5-4-3-2-1) passo a passo.</li>
+        <li>Meditações curtas e frases reconfortantes.</li>
+        <li>Modo SOS para ataques de pânico.</li>
+        <li>Funciona offline. Sem anúncios.</li>
+      </ul>
+    </section>
+  </main>
 
+  <footer class="container" role="contentinfo" style="margin:32px 0 48px;">
+    <p>&copy; <span id="year"></span> SOS Ansiedade. Todos os direitos reservados.</p>
+  </footer>
 
-
-
-
-
-
-
-
+  <script>
+    // Atualiza o ano no footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
