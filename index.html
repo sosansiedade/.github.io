@@ -27,13 +27,13 @@
       --hero-radius:16px;
 
       /* Coluna esquerda (ícone + botões) */
-      --left-col-width: 300px;
-      --logo-box:       220px;
+      --left-col-width: 300px;  /* largura da coluna esquerda */
+      --logo-box:       180px;  /* 🔧 tamanho do quadrado do ícone (reduzido) */
       --logo-radius:    28%;
-      --logo-scale:     1.22;
-      --gap:            28px;
-      --btn-gap:        10px;
-      --icon-size:      20px;  /* tamanho dos símbolos nos botões */
+      --logo-scale:     1.18;   /* ligeiramente menos aproximado */
+      --gap:            28px;   /* espaço entre colunas */
+      --btn-gap:        10px;   /* espaço entre botões */
+      --icon-size:      20px;   /* tamanho dos símbolos nos botões */
     }
 
     .container{
@@ -42,7 +42,7 @@
       padding: 0 16px;
     }
 
-    /* HERO (lado-a-lado SEMPRE) */
+    /* ================== HERO (lado-a-lado SEMPRE) ================== */
     #hero-fixed, #hero-fixed * { box-sizing: border-box; }
     #hero-fixed{
       display:flex !important;
@@ -148,7 +148,7 @@
     @media (max-width:560px){
       :root{
         --left-col-width: 280px;
-        --logo-box: 200px;
+        --logo-box: 168px;  /* opcional: ainda menor no mobile */
       }
     }
   </style>
@@ -174,7 +174,6 @@
         <div class="store-buttons" aria-label="Descarregar a app">
           <!-- APP STORE (símbolo oficial) -->
           <a class="store-btn apple" href="#" aria-label="Brevemente na App Store">
-            <!-- Apple logo: monocromático, herda cor do botão -->
             <svg viewBox="0 0 850 1000" aria-hidden="true" focusable="false">
               <path fill="currentColor" d="M567 80c-38 45-91 72-145 68-7-53 21-110 56-145 38-45 101-77 153-78 5 54-23 109-64 155zM736 1000c-47 14-96 0-132-22-35-21-66-21-103 0-56 33-107 30-160 8-109-47-214-213-214-365 0-141 92-223 180-223 49 0 85 25 114 25 27 0 77-27 134-27 40 0 82 15 117 58-103 63-87 224 17 270-11 28-24 55-39 81-32 56-68 104-114 195z"/>
             </svg>
@@ -186,7 +185,6 @@
 
           <!-- GOOGLE PLAY (símbolo oficial multicolor) -->
           <a class="store-btn google" href="#" aria-label="Brevemente na Google Play">
-            <!-- Triângulo Google Play em 4 cores oficiais -->
             <svg viewBox="0 0 512 512" aria-hidden="true" focusable="false">
               <defs>
                 <linearGradient id="gp-a" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -206,7 +204,6 @@
                   <stop offset="100%" stop-color="#00D775"/>
                 </linearGradient>
               </defs>
-              <!-- dividido como no logótipo oficial -->
               <path d="M48 21c-5-5-13-1.4-13 6.4v457.2c0 7.8 8.5 11.4 13 6.4L280.3 266.4 345 202 280.3 137.6 48 21z" fill="url(#gp-a)"/>
               <path d="M345 202l72.2-72.2c6.1-6.1 1.8-16.5-6.8-16.5h-55.3c-2.6 0-5.1 1-6.9 2.9l-68 68L345 202z" fill="url(#gp-b)"/>
               <path d="M280.3 266.4l-68 68c-1.8 1.8-2.9 4.3-2.9 6.9v55.3c0 8.6 10.4 12.9 16.5 6.8L345 266 280.3 266.4z" fill="url(#gp-c)"/>
@@ -250,5 +247,3 @@
   </script>
 </body>
 </html>
-
-
