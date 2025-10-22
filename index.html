@@ -19,98 +19,142 @@
   <link rel="apple-touch-icon" href="./assets/icon-180.png" />
   <link rel="manifest" href="./manifest.webmanifest" />
 
-  <!-- Mantém se quiseres -->
+  <!-- Mantém o teu CSS externo se quiseres -->
   <link rel="stylesheet" href="./styles.css?v=6" />
 
   <style>
-    /* ================== Controlo total e seguro dentro do HERO ================== */
+    /* ================== Variáveis para afinar rapidamente ================== */
     :root{
-      --brand-bg:#E9DBF5;
-      --logo-col-width: 240px;   /* largura da coluna do logo (esq.) */
-      --logo-size: 200px;        /* tamanho do “quadrado” do icon */
-      --logo-radius: 28%;        /* arredondamento do quadrado */
-      --logo-scale: 1.18;        /* 🔧 aumenta para “aproximar” o logo dentro da caixa */
+      --brand-bg:#E9DBF5;        /* fundo do hero */
+      --hero-radius:16px;        /* cantos do hero */
+      --logo-col-width:240px;    /* largura da coluna do logo (esquerda) */
+      --logo-size:200px;         /* tamanho da caixa do logo */
+      --logo-radius:28%;         /* cantos arredondados do "quadrado" do icon */
+      --logo-scale:1.22;         /* aproxima a imagem dentro da caixa */
+      --gap:28px;                /* espaço entre colunas */
     }
 
+    /* ================== Layout geral ================== */
     .container{
       max-width: 980px;
       margin: 0 auto;
       padding: 0 16px;
     }
 
-    /* HERO com máxima especificidade e !important para vencer conflitos externos */
-    body .hero{ 
+    /* ================== HERO (logo à esquerda + texto à direita) ================== */
+    /* forçamos grid + colunas fixas SEMPRE, mesmo em mobile */
+    #hero-fixed, #hero-fixed * { box-sizing: border-box; }
+    #hero-fixed{
       display:grid !important;
       grid-template-columns: var(--logo-col-width) minmax(0,1fr) !important;
       align-items:center !important;
-      column-gap:28px !important;
+      column-gap: var(--gap) !important;
       margin:32px 0 !important;
-      background:var(--brand-bg) !important;
-      border-radius:16px !important;
+      background: var(--brand-bg) !important;
+      border-radius: var(--hero-radius) !important;
       padding:20px !important;
-      box-sizing: border-box !important;
     }
 
-    /* Coluna esquerda FICHA mesmo à esquerda */
-    body .hero .hero-logo{
-      width: var(--logo-col-width) !important;
+    /* Coluna esquerda fixa (logo) */
+    #hero-fixed .hero-logo{
       justify-self:start !important;
+      width: var(--logo-col-width) !important;
     }
 
-    /* Caixa do icon (quadrado) — centra e corta excesso */
-    body .hero .logo-box{
+    /* Caixa que segura o logo (centraliza a imagem e corta excesso) */
+    #hero-fixed .logo-box{
       width: var(--logo-size) !important;
       height: var(--logo-size) !important;
       border-radius: var(--logo-radius) !important;
-      overflow: hidden !important;
-      display: grid !important;
-      place-items: center !important;
+      overflow:hidden !important;
+      display:grid !important;
+      place-items:center !important;
       background: transparent !important;
-      box-shadow: 0 2px 10px rgba(0,0,0,.05) !important;
+      box-shadow:0 2px 10px rgba(0,0,0,.05) !important;
+      margin: 0 auto 0 0 !important; /* encosta à esquerda dentro da coluna */
     }
 
-    /* Imagem do logo — “aproximada” com scale para ocupar melhor a caixa */
-    body .hero .logo-img{
+    /* A própria imagem do logo */
+    #hero-fixed .logo-img{
       display:block !important;
       width:100% !important;
       height:100% !important;
-      object-fit: contain !important;       /* mantém proporção */
-      transform: scale(var(--logo-scale)) !important; 
-      transform-origin: center !important;
-      image-rendering: auto !important;
+      object-fit:contain !important;
+      transform: scale(var(--logo-scale)) !important;
+      transform-origin:center !important;
+      image-rendering:auto !important;
       background: transparent !important;
     }
 
-    /* Coluna direita: texto */
-    body .hero .hero-copy{ min-width:0 !important; }
-    body .hero .hero-copy h1,
-    body .hero .hero-copy .lead,
-    body .hero .hero-copy p{
+    /* Coluna direita (texto) */
+    #hero-fixed .hero-copy{ min-width:0 !important; }
+    #hero-fixed .hero-copy h1,
+    #hero-fixed .hero-copy .lead,
+    #hero-fixed .hero-copy p{
       margin-top:0 !important;
       overflow-wrap:anywhere !important;
     }
-    body .hero .hero-copy .lead{
+    #hero-fixed .hero-copy .lead{
       font-size:1.125rem !important;
       line-height:1.6 !important;
       margin-bottom:8px !important;
     }
 
-    /* Responsivo: empilha no mobile */
+    /* Botões de loja */
+    .store-buttons{
+      display:flex !important;
+      gap:12px !important;
+      flex-wrap:wrap !important;
+      margin-top:14px !important;
+    }
+    .store-btn{
+      display:inline-flex !important;
+      align-items:center !important;
+      justify-content:center !important;
+      min-height:44px !important;
+      padding:10px 16px !important;
+      border-radius:12px !important;
+      text-decoration:none !important;
+      font-weight:600 !important;
+      border:1px solid rgba(0,0,0,.08) !important;
+      box-shadow:0 1px 3px rgba(0,0,0,.06) !important;
+      transition: transform .06s ease, box-shadow .12s ease !important;
+      background:#fff !important;
+      color:#111 !important;
+      line-height:1 !important;
+    }
+    .store-btn:hover{ transform: translateY(-1px); box-shadow:0 3px 10px rgba(0,0,0,.10) !important; }
+    .store-btn small{ display:block; font-weight:500; opacity:.7; }
+    .store-btn .label{
+      display:flex; flex-direction:column; text-align:left;
+    }
+    .apple:before, .google:before{
+      content:""; display:inline-block; width:18px; height:18px; margin-right:10px;
+      background: currentColor; mask-size: cover; -webkit-mask-size: cover;
+    }
+    /* ícones simples (vetor via CSS mask) */
+    .apple:before{
+      -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 1000"><path d="M567 80c-38 45-91 72-145 68-7-53 21-110 56-145 38-45 101-77 153-78 5 54-23 109-64 155zM736 1000c-47 14-96 0-132-22-35-21-66-21-103 0-56 33-107 30-160 8-109-47-214-213-214-365 0-141 92-223 180-223 49 0 85 25 114 25 27 0 77-27 134-27 40 0 82 15 117 58-103 63-87 224 17 270-11 28-24 55-39 81-32 56-68 104-114 195z"/></svg>');
+              mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 1000"><path d="M567 80c-38 45-91 72-145 68-7-53 21-110 56-145 38-45 101-77 153-78 5 54-23 109-64 155zM736 1000c-47 14-96 0-132-22-35-21-66-21-103 0-56 33-107 30-160 8-109-47-214-213-214-365 0-141 92-223 180-223 49 0 85 25 114 25 27 0 77-27 134-27 40 0 82 15 117 58-103 63-87 224 17 270-11 28-24 55-39 81-32 56-68 104-114 195z"/></svg>');
+    }
+    .google:before{
+      -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M325.3 234.3L104.2 13.2c-6.6-6.6-17.5-1.9-17.5 7.4v470.8c0 9.3 10.9 14 17.5 7.4l221.1-221.1 86.8-86.8-86.8-86.6zM386.1 173.5l69.5-69.5c9.4-9.4 2.7-25.6-10.6-25.6H418c-4.1 0-8 1.6-10.9 4.5l-64.5 64.5 43.5 43.6zM342.6 338.5l64.5 64.5c2.9 2.9 6.8 4.5 10.9 4.5h27.1c13.2 0 20-16.3 10.6-25.6l-69.5-69.5-43.6 43.6z"/></svg>');
+              mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M325.3 234.3L104.2 13.2c-6.6-6.6-17.5-1.9-17.5 7.4v470.8c0 9.3 10.9 14 17.5 7.4l221.1-221.1 86.8-86.8-86.8-86.6zM386.1 173.5l69.5-69.5c9.4-9.4 2.7-25.6-10.6-25.6H418c-4.1 0-8 1.6-10.9 4.5l-64.5 64.5 43.5 43.6zM342.6 338.5l64.5 64.5c2.9 2.9 6.8 4.5 10.9 4.5h27.1c13.2 0 20-16.3 10.6-25.6l-69.5-69.5-43.6 43.6z"/></svg>');
+    }
+    .apple, .google{ color:#111 !important; }
+    .store-btn .label b{ font-size:0.96rem; }
+
+    /* ================== NÃO empilhar no mobile ================== */
     @media (max-width:560px){
-      body .hero{
-        grid-template-columns: 1fr !important;
-        text-align:center !important;
-        row-gap:12px !important;
+      /* continuamos lado-a-lado */
+      #hero-fixed{
+        grid-template-columns: var(--logo-col-width) minmax(0,1fr) !important;
       }
-      body .hero .hero-logo{
-        width:auto !important;
-        justify-self:center !important;
+      /* opcional: reduzir só um bocadinho o tamanho visual do logo */
+      #hero-fixed .logo-box{
+        width: 184px !important;
+        height: 184px !important;
       }
-      body .hero .logo-box{
-        width: 172px !important;
-        height: 172px !important;
-      }
-      body .hero .hero-copy{ text-align:left !important; }
     }
   </style>
 </head>
@@ -124,18 +168,35 @@
   </header>
 
   <main class="container" role="main">
-    <!-- HERO: Logo à esquerda + Texto à direita (com escala do logo) -->
-    <section class="hero" aria-label="Apresentação da app SOS Ansiedade">
+    <!-- HERO: Ícone SEMPRE ao lado do texto -->
+    <section id="hero-fixed" class="hero" aria-label="Apresentação da app SOS Ansiedade">
+      <!-- COLUNA ESQUERDA: ICON -->
       <div class="hero-logo">
         <div class="logo-box">
           <img class="logo-img" src="/assets/logo.png" alt="Logótipo SOS Ansiedade">
         </div>
       </div>
 
+      <!-- COLUNA DIREITA: TEXTO + BOTÕES -->
       <div class="hero-copy">
         <h1>SOS Ansiedade – Apoio na palma da tua mão</h1>
         <p class="lead">Ferramentas rápidas de respiração, grounding e áudio-guias para acalmar a ansiedade. Funciona offline. Sem anúncios.</p>
         <p>Em poucos toques, encontra exercícios de respiração guiada, técnicas de grounding 5-4-3-2-1, meditações curtas e um modo SOS para momentos mais intensos. Desenhado para ser simples, discreto e eficaz — em casa, no trabalho ou em viagem.</p>
+
+        <div class="store-buttons" aria-label="Descarregar a app">
+          <a class="store-btn apple" href="#" aria-label="Brevemente na App Store">
+            <span class="label">
+              <small>Descarregar na</small>
+              <b>App Store</b>
+            </span>
+          </a>
+          <a class="store-btn google" href="#" aria-label="Brevemente na Google Play">
+            <span class="label">
+              <small>Disponível na</small>
+              <b>Google Play</b>
+            </span>
+          </a>
+        </div>
       </div>
     </section>
 
