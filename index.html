@@ -19,28 +19,27 @@
   <link rel="apple-touch-icon" href="./assets/icon-180.png" />
   <link rel="manifest" href="./manifest.webmanifest" />
 
-  <!-- Mantém o teu CSS externo se quiseres -->
+  <!-- Mantém se quiseres -->
   <link rel="stylesheet" href="./styles.css?v=6" />
 
   <style>
-    /* ================== Variáveis rápidas para afinar ================== */
+    /* ================== Controlo total e seguro dentro do HERO ================== */
     :root{
-      --brand-bg:#E9DBF5;      /* fundo do hero */
-      --logo-col-width:220px;  /* largura fixa da coluna do logo (esquerda) */
-      --logo-size:184px;       /* 🔧 tamanho da caixa do logo */
-      --logo-radius:24%;       /* cantos arredondados do “quadrado” do logo */
+      --brand-bg:#E9DBF5;
+      --logo-col-width: 240px;   /* largura da coluna do logo (esq.) */
+      --logo-size: 200px;        /* tamanho do “quadrado” do icon */
+      --logo-radius: 28%;        /* arredondamento do quadrado */
+      --logo-scale: 1.18;        /* 🔧 aumenta para “aproximar” o logo dentro da caixa */
     }
 
-    /* ================== Layout geral ================== */
     .container{
       max-width: 980px;
       margin: 0 auto;
       padding: 0 16px;
     }
 
-    /* ================== HERO (logo à esquerda + texto à direita) ================== */
-    .hero, .hero * { box-sizing: border-box; }
-    .hero{
+    /* HERO com máxima especificidade e !important para vencer conflitos externos */
+    body .hero{ 
       display:grid !important;
       grid-template-columns: var(--logo-col-width) minmax(0,1fr) !important;
       align-items:center !important;
@@ -49,59 +48,69 @@
       background:var(--brand-bg) !important;
       border-radius:16px !important;
       padding:20px !important;
+      box-sizing: border-box !important;
     }
 
-    /* Coluna esquerda (fixa) */
-    .hero-logo{
-      justify-self:start !important;  /* encosta a coluna à esquerda */
+    /* Coluna esquerda FICHA mesmo à esquerda */
+    body .hero .hero-logo{
       width: var(--logo-col-width) !important;
+      justify-self:start !important;
     }
 
-    /* Caixa do logo: mantém o logo centrado e do tamanho certo */
-    .logo-box{
+    /* Caixa do icon (quadrado) — centra e corta excesso */
+    body .hero .logo-box{
       width: var(--logo-size) !important;
       height: var(--logo-size) !important;
       border-radius: var(--logo-radius) !important;
-      overflow:hidden !important;
-      display:grid !important;
-      place-items:center !important;     /* centra a imagem */
-      box-shadow:0 2px 10px rgba(0,0,0,.05) !important;
-      background: #fff0 !important;      /* transparente (ou muda se quiseres) */
+      overflow: hidden !important;
+      display: grid !important;
+      place-items: center !important;
+      background: transparent !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,.05) !important;
     }
 
-    /* A própria imagem do logo */
-    .logo-img{
-      max-width:100% !important;
-      max-height:100% !important;
+    /* Imagem do logo — “aproximada” com scale para ocupar melhor a caixa */
+    body .hero .logo-img{
+      display:block !important;
       width:100% !important;
       height:100% !important;
-      object-fit:contain !important;     /* cabe sem cortar */
-      display:block !important;
+      object-fit: contain !important;       /* mantém proporção */
+      transform: scale(var(--logo-scale)) !important; 
+      transform-origin: center !important;
+      image-rendering: auto !important;
+      background: transparent !important;
     }
 
-    /* Coluna direita (texto) */
-    .hero-copy{ min-width:0 !important; }
-    .hero-copy h1, .hero-copy .lead, .hero-copy p{
-      margin-top:0; overflow-wrap:anywhere;
+    /* Coluna direita: texto */
+    body .hero .hero-copy{ min-width:0 !important; }
+    body .hero .hero-copy h1,
+    body .hero .hero-copy .lead,
+    body .hero .hero-copy p{
+      margin-top:0 !important;
+      overflow-wrap:anywhere !important;
     }
-    .lead{ font-size:1.125rem; line-height:1.6; margin-bottom:8px; }
+    body .hero .hero-copy .lead{
+      font-size:1.125rem !important;
+      line-height:1.6 !important;
+      margin-bottom:8px !important;
+    }
 
-    /* ================== Responsivo (empilha no mobile) ================== */
-    @media (max-width: 560px){
-      .hero{
+    /* Responsivo: empilha no mobile */
+    @media (max-width:560px){
+      body .hero{
         grid-template-columns: 1fr !important;
         text-align:center !important;
         row-gap:12px !important;
       }
-      .hero-logo{
-        justify-self:center !important;  /* centra a coluna quando empilha */
+      body .hero .hero-logo{
         width:auto !important;
+        justify-self:center !important;
       }
-      .logo-box{
-        width: 156px !important;         /* um pouco menor no mobile */
-        height: 156px !important;
+      body .hero .logo-box{
+        width: 172px !important;
+        height: 172px !important;
       }
-      .hero-copy{ text-align:left !important; }
+      body .hero .hero-copy{ text-align:left !important; }
     }
   </style>
 </head>
@@ -115,11 +124,10 @@
   </header>
 
   <main class="container" role="main">
-    <!-- HERO: Logo à esquerda + Texto à direita -->
+    <!-- HERO: Logo à esquerda + Texto à direita (com escala do logo) -->
     <section class="hero" aria-label="Apresentação da app SOS Ansiedade">
       <div class="hero-logo">
         <div class="logo-box">
-          <!-- usa o ficheiro que confirmaste no GitHub Pages -->
           <img class="logo-img" src="/assets/logo.png" alt="Logótipo SOS Ansiedade">
         </div>
       </div>
@@ -128,12 +136,6 @@
         <h1>SOS Ansiedade – Apoio na palma da tua mão</h1>
         <p class="lead">Ferramentas rápidas de respiração, grounding e áudio-guias para acalmar a ansiedade. Funciona offline. Sem anúncios.</p>
         <p>Em poucos toques, encontra exercícios de respiração guiada, técnicas de grounding 5-4-3-2-1, meditações curtas e um modo SOS para momentos mais intensos. Desenhado para ser simples, discreto e eficaz — em casa, no trabalho ou em viagem.</p>
-        <!-- Botões (opcional)
-        <p>
-          <a class="store-btn" href="#" rel="noopener">App Store</a>
-          <a class="store-btn" href="#" rel="noopener">Google Play</a>
-        </p>
-        -->
       </div>
     </section>
 
@@ -155,7 +157,6 @@
   </footer>
 
   <script>
-    // Atualiza o ano no footer
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
